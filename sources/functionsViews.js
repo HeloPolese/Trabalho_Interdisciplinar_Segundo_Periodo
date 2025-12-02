@@ -1,3 +1,4 @@
+//atletas------------>
 const selectOpcao = document.getElementById("selectOpcao");
 const inNome = document.getElementById("inNome");
 const inIdade = document.getElementById("inIdade");

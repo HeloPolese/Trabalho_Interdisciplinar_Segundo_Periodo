@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,7 @@
                 participantes e visualizar os <br> eventos de forma simples e organizada.</p>
         </div>
         <div class="select">
-            <select id="selectOpcao" class="selectOpcao">
+            <select id="selectOpcaoCorrida" class="selectOpcao">
                 <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
                 <option value="cadastrar-corrida">Cadastrar Corrida</option>
                 <option value="editar-corrida">Editar Corrida</option>
@@ -38,29 +38,29 @@
                 <option value="listar-competidores-corrida">Listar Competidores de corrida</option>
                 <option value="relatorio-competicao">Listar Relatório de Competição</option>
                 <option value="relatorio-competicoes">Listar Relatório de Competições</option>
-
             </select>
         </div>
-
         <div class="inputs">
-            <p> <input type="text" id="" placeholder="Insira o "> </p>
+            <p> <input type="text" id="inNomeCor" placeholder="Insira o nome da Corrida..."> </p>
+            <p> <input type="text" id="inDataCor" placeholder="Insira a data da Corrida... "> </p>
+            <p> <input type="text" id="inLocal" placeholder="Insira o local da Corrida..."> </p>
+            <p> <input type="text" id="inDistancia" placeholder="Insira a distância da Corrida..."> </p>
+            <p> <input type="text" id="inLimiteParti" placeholder="Insira o limite de participantes..."> </p>
+            <p> <input type="text" id="inPreco" placeholder="Insira o preço da Corrida..."> </p>
+            <p> <input type="text" id="inLimiteTempo" placeholder="Insira o limite de tempo da Corrida..."> </p>
             <p> <input type="button" id="btOk" value="Executar" disabled> </p>
             <p id="outSaida"> </p>
 
             <section class="table"></section>
         </div>
-
-
     </main>
-
     <footer>
         <div class="container-footer">
             <p>Brasil</p>
             <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
         </div>
     </footer>
-
-    <script type="module" src=""></script>
+    <script type="module" src="./sources/functionsViewsCorridas.js"></script>
 </body>
 
 </html>
