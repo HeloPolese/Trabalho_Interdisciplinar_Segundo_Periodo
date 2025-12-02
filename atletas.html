@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="base.css">
-    <title>RunBase: Corridas</title>
+    <title>RunBase: Atletas</title>
 </head>
 
 <body>
@@ -37,27 +36,26 @@
                 <option value="excluir-atleta">Excluir Atleta</option>
                 <option value="listar-atletas">Listar Atletas</option>
             </select>
+           
         </div>
 
         <div class="inputs">
-            <p> <input type="text" id="" placeholder="Insira o "> </p>
+            <input type="text" id="inNome" placeholder="Digite seu nome...">
+            <input type="number" id="inIdade" placeholder="Sua idade aqui...">
+            <input type="text" id="inCpf" placeholder="Digite seu CPF aqui...">
             <p> <input type="button" id="btOk" value="Executar" disabled> </p>
             <p id="outSaida"> </p>
 
             <section class="table"></section>
         </div>
-
-
     </main>
-
     <footer>
         <div class="container-footer">
             <p>Brasil</p>
             <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
         </div>
     </footer>
-
-    <script type="module" src=""></script>
+    <script type="module" src="/sources/functionsViews.js"></script>
 </body>
 
 </html>
