@@ -4,13 +4,13 @@ class Atleta{
     #idade;
     #cpf;
 
-    constructor(id,nome,idade = "",cpf){
+    constructor(id,nome,idade = 0,cpf){
         this.#nome = nome;  
         this.#idade = idade;
         this.#cpf = cpf;
         this.#idAtleta = id;
     }
-    
+
     get idAtleta(){
         return this.#idAtleta;
     }
@@ -29,7 +29,7 @@ class Atleta{
     }
 
     set idade(newIdade){
-        if (newIdade != undefined && newIdade > 0 ) {
+        if (newIdade != undefined && newIdade > 0) {
             this.#idade = newIdade;
         }
     }
@@ -42,6 +42,12 @@ class Atleta{
         if (newCpf != undefined && newCpf.length == 11 ) {
             this.#cpf = newCpf;
         }
+    }
+
+    toString(){
+        return "Nome: " + this.#nome + 
+               "\nIdade: " + this.#idade +
+               "\nCpf: " + this.#cpf;
     }
 
 }
