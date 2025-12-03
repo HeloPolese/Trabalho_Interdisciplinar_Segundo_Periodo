@@ -1,4 +1,5 @@
-//atletas------------>
+import * as Atleta from "../control/atletasControl.js";
+
 const selectOpcao = document.getElementById("selectOpcao");
 const inCpfEditar = document.getElementById("inCpfEditar");
 const inNome = document.getElementById("inNome");
@@ -8,8 +9,14 @@ const divCpfPes = document.getElementById("divCpfPes");
 const divNome = document.getElementById("divNome");
 const divIdade = document.getElementById("divIdade");
 const divCpf = document.getElementById("divCpf");
+const outSaida = document.getElementById("outSaida");
+const btOk = document.getElementById("btOk");
+const table = document.getElementById("table");
+
 
 selectOpcao.addEventListener("change", verificarOpcao);
+
+btOk.addEventListener("click", executarFuncaoAtleta);
 
 document.addEventListener('DOMContentLoaded', function () {
     verificarOpcao();
@@ -23,7 +30,7 @@ function verificarOpcao() {
 
     switch (selectOpcao.value) {
         case "cadastrar-atleta":
-            divCpfPes.style.display = "block";
+            divCpfPes.style.display = "none";
             divNome.style.display = "block";
             divIdade.style.display = "block";
             divCpf.style.display = "block";
@@ -48,3 +55,28 @@ function verificarOpcao() {
             break;
     }
 }
+
+function executarFuncaoAtleta() {
+
+    let opcao = selectOpcao.value;
+    outSaida.textContent = "";
+    //table.textContent = "";
+
+    switch (opcao) {
+        case "cadastrar-atleta":
+            if (inNome.value == "" && inIdade.value == "" && inCpf.value == "") {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, preencha todos os campos.";
+
+            } else {
+                if (Atleta.cadastrarAtleta(inNome.value, inIdade.value, inCpf.value)) {
+                    outSaida.style.color = "blue";
+                    outSaida.textContent = "Cadastrado com sucesso!";
+                }
+                else {
+                    outSaida.style.color = "red";
+                    outSaida.textContent = "Erro! Atleta já cadastrado.";
+                }}
+            }}
+
+

@@ -1,4 +1,4 @@
-class Atleta{
+export class Atleta{
     #idAtleta;
     #nome;
     #idade;
