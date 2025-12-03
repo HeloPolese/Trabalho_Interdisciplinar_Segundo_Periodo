@@ -3,17 +3,21 @@ import { Atleta } from "../atletas.js";
 var vetAtletas = [];
 
 export function cadastrarAtleta(nome, idade, cpf) {
-    if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11) {
-        let id = vetAtletas.length + 1;
-        var objAtleta = new Atleta(id, nome, idade, cpf);
-        vetAtletas.push(objAtleta);
-        return true;
+    let objExiste = vetAtletas.find(obj => obj.cpf = cpf);
+    if (objExiste == undefined) {
+        if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11) {
+            let id = vetAtletas.length + 1;
+            var objAtleta = new Atleta(id, nome, idade, cpf);
+            vetAtletas.push(objAtleta);
+            return true;
+        }
     }
+
     return false
 }
 
 export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
-   let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
+    let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
     if (buscaObj != undefined) {
         buscaObj.nome = novoNome;
         buscaObj.idade = novaIdade;
@@ -24,19 +28,19 @@ export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
 }
 
 export function excluirAtleta(cpf) {
-   let indiceAtleta = vetAtletas.findIndex(obj => obj.cpf == cpf);
+    let indiceAtleta = vetAtletas.findIndex(obj => obj.cpf == cpf);
     if (indiceAtleta != -1) {
         vetAtletas.splice(indiceAtleta, 1);
         return true;
     }
-  return false;  
+    return false;
 }
 
 export function listarAtletas() {
     if (vetAtletas.length > 0) {
         return gerarTabelaAtletas(vetAtletas);
     }
-   }
+}
 
 
 export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
@@ -59,11 +63,11 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
             let tdNome = document.createElement("td");
             let tdIdade = document.createElement("td");
             let tdCPF = document.createElement("td");
-            
+
             tdNome.textContent = vetAtletasFiltrados[lin].nome;
             tdIdade.textContent = vetAtletasFiltrados[lin].idade;
             tdCPF.textContent = vetAtletasFiltrados[lin].cpf;
-   
+
             linha.appendChild(tdNome);
             linha.appendChild(tdIdade);
             linha.appendChild(tdCPF);
