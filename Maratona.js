@@ -16,4 +16,9 @@ export class Maratona extends Competicao {
         this.#altimetria = Number(novaAltimetria);
     }
 
+    toString() {
+    return super.toString() +
+           `\nAltimetria: ${this.altimetria} m`;
+    }
+
 }

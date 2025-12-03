@@ -36,4 +36,10 @@ export class CompeticaoTrilha extends Competicao {
         }
     }
 
+    toString() {
+    return super.toString() +
+           `\nQuantidade de Checkpoints: ${this.qtdCheckPoint}` +
+           `\nGrau de Dificuldade: ${this.grauDificuldade}`;
+    }
+
 }
