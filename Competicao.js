@@ -41,7 +41,7 @@ class Competicao {
     }
 
     set data(_data) {
-        if (_data != undefined && _data.lenght == 10) { // igual a 10 pois o formato é DD/MM/AAA
+        if (_data != undefined && _data.lenght == 10) { // igual a 10 pois o formato é DD/MM/AAAA
             this.#data = _data
         }
     }
@@ -104,7 +104,7 @@ class Competicao {
     }
 
     get lstCompetidores() {
-        return this.#lstCompetidores;
+        return this.#lstCompetidores.slice();
     }
 
     toString() {
