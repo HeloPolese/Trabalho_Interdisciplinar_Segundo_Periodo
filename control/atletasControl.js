@@ -3,7 +3,7 @@ import { Atleta } from '../atletas.js';
 var vetAtletas = [];
 
 export function cadastrarAtleta(nome, idade, cpf) {
-    if (nome != undefined && idade != undefined && cpf.length == 11) {
+    if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11) {
         let id = vetAtletas.length + 1;
         var objAtleta = new Atleta(id, nome, idade, cpf);
         vetAtletas.push(objAtleta);
