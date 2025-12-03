@@ -34,6 +34,10 @@ function verificarOpcao() {
             divNome.style.display = "block";
             divIdade.style.display = "block";
             divCpf.style.display = "block";
+            inNome.value = "";
+            inIdade.value = "";
+            inCpf.value = "";
+            inCpfEditar.value = "";
             inNome.focus();
             break;
         case "editar-atleta":
@@ -41,6 +45,10 @@ function verificarOpcao() {
             divNome.style.display = "block";
             divIdade.style.display = "block";
             divCpf.style.display = "block";
+            inNome.value = "";
+            inIdade.value = "";
+            inCpf.value = "";
+            inCpfEditar.value = "";
             inNome.focus();
             break;
         case "excluir-atleta":
@@ -48,6 +56,10 @@ function verificarOpcao() {
             divNome.style.display = "none";
             divIdade.style.display = "none";
             divCpf.style.display = "none";
+            inNome.value = "";
+            inIdade.value = "";
+            inCpf.value = "";
+            inCpfEditar.value = "";
             inNome.focus();
             break;
         case "listar-atletas":
@@ -60,7 +72,7 @@ function executarFuncaoAtleta() {
 
     let opcao = selectOpcao.value;
     outSaida.textContent = "";
-    //table.textContent = "";
+    table.textContent = "";
 
     switch (opcao) {
         case "cadastrar-atleta":
@@ -76,7 +88,46 @@ function executarFuncaoAtleta() {
                 else {
                     outSaida.style.color = "red";
                     outSaida.textContent = "Erro! Atleta já cadastrado.";
-                }}
-            }}
-
-
+                }
+            }
+            break;
+        case "editar-atleta":
+            if (inCpfEditar.value == "" && inNome.value == "" && inIdade.value == "" && inCpf.value == "") {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, preencha todos os campos.";
+            } else {
+                if (Atleta.editarAtleta(inCpfEditar.value, inNome.value, inIdade.value, inCpf.value)) {
+                    outSaida.style.color = "blue";
+                    outSaida.textContent = "Editado com sucesso!";
+                } else {
+                    outSaida.style.color = "red";
+                    outSaida.textContent = "Erro! Atleta não encontrado.";
+                }
+            }
+            break;
+        case "excluir-atleta":
+            if (inCpfEditar.value == "") {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, preencha o campo CPF.";
+            } else {
+                if (Atleta.excluirAtleta(inCpfEditar.value)) {
+                    outSaida.style.color = "blue";
+                    outSaida.textContent = "Excluído com sucesso!";
+                } else {
+                    outSaida.style.color = "red";
+                    outSaida.textContent = "Erro! Atleta não encontrado.";
+                }
+            }
+            break;
+        case "listar-atletas":
+            let tabelaGerada = Atleta.listarAtletas();
+            if (tabelaGerada != undefined) {
+                table.innerHTML = "";
+                table.appendChild(tabelaGerada);
+            } else {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Nenhum atleta cadastrado.";
+            }
+            break;
+    }
+}

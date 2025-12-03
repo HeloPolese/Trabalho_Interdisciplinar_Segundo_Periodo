@@ -12,7 +12,6 @@ export function cadastrarAtleta(nome, idade, cpf) {
             return true;
         }
     }
-
     return false
 }
 
