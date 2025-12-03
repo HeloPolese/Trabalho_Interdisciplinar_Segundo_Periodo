@@ -29,28 +29,46 @@
         <div class="select">
             <select id="selectOpcaoCorrida" class="selectOpcao">
                 <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
-                <option value="cadastrar-corrida">Cadastrar Corrida</option>
-                <option value="editar-corrida">Editar Corrida</option>
-                <option value="excluir-corrida">Excluir Corrida</option>
-                <option value="listar-corrida">Listar Corridas</option>
-                <option value="adicionar-atleta-corrida">Adicionar Atleta a corrida</option>
+                <option value="cadastrar-competicao">Cadastrar Corrida</option>
+                <option value="editar-competicao">Editar Corrida</option>
+                <option value="excluir-competicao">Excluir Corrida</option>
+                <option value="listar-competicao">Listar Corridas</option>
+                <option value="adicionar-atleta-competicao">Adicionar Atleta a corrida</option>
                 <option value="listar-competidores-corrida">Listar Competidores de corrida</option>
                 <option value="relatorio-competicao">Listar Relatório de Competição</option>
-                <option value="relatorio-competicoes">Listar Relatório de Competições</option>
+                <option value="relatorio-todas-competicoes">Listar Relatório de Competições</option>
+                <option value="excluir-competidor-competicao">Excluir Competidor da Competição</option>
             </select>
         </div>
         <div class="inputs">
-            <p> <input type="text" id="inNomeCor" placeholder="Insira o nome da Corrida..."> </p>
-            <p> <input type="text" id="inNomeAtle" placeholder="Insira o nome do Atleta..."></p>
-            <p> <input type="text" id="inDataCor" placeholder="Insira a data da Corrida... "> </p>
-            <p> <input type="text" id="inLocal" placeholder="Insira o local da Corrida..."> </p>
-            <p> <input type="text" id="inDistancia" placeholder="Insira a distância da Corrida..."> </p>
-            <p> <input type="text" id="inLimiteParti" placeholder="Insira o limite de participantes..."> </p>
-            <p> <input type="text" id="inPreco" placeholder="Insira o preço da Corrida..."> </p>
-            <p> <input type="text" id="inLimiteTempo" placeholder="Insira o limite de tempo da Corrida..."> </p>
+            <div id="divNomeCorrida">
+                <label for="inNomeCorrida">Nome da Corrida: </label><input type="text" id="inNomeCorrida"
+                    placeholder="Insira o nome da Corrida...">
+            </div>
+            <div id="divCpfAtletas">
+                <label for="inCpfAtleta">CPF do Atleta: </label><input type="text" id="inCpfAtleta" placeholder="Insira o nome do Atleta...">
+            </div>
+            <div id="divData">
+                <label for="inDataCorrida">Data da Corrida: </label><input type="text" id="inDataCorrida" placeholder="Insira a data da Corrida... ">
+            </div>
+            <div id="divLocal">
+                <label for="inLocal">Local da Corrida: </label><input type="text" id="inLocal" placeholder="Insira o local da Corrida...">
+            </div>
+            <div id="divDistancia">
+                <label for="inDistancia">Distância da Corrida: </label><input type="text" id="inDistancia" placeholder="Insira a distância da Corrida...">
+            </div>
+            <div id="divLimiteAtletas">
+                <label for="inLimiteParti">Limite de Participantes </label><input type="text" id="inLimiteParti" placeholder="Insira o limite de participantes...">
+            </div>
+            <div id="divPreco">
+                <label for="inPreco">Preço da Corrida: </label><input type="text" id="inPreco" placeholder="Insira o preço da Corrida...">
+            </div>
+            <div id="divLimiteTempo">
+                <label for="inLimiteTempo">Limite de Tempo da Corrida: </label><input type="text" id="inLimiteTempo" placeholder="Insira o limite de tempo da Corrida...">
+            </div>
+
             <p> <input type="button" id="btOk" value="Executar" disabled> </p>
             <p id="outSaida"> </p>
-
             <section class="table"></section>
         </div>
     </main>
@@ -60,7 +78,7 @@
             <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
         </div>
     </footer>
-    <script type="module" src="./sources/functionsViewsCorridas.js"></script>
+    <script type="module" src="/views/functionsViewsCorridas.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,16 +37,27 @@
                 <option value="excluir-atleta">Excluir Atleta</option>
                 <option value="listar-atletas">Listar Atletas</option>
             </select>
-           
+
         </div>
 
         <div class="inputs">
-            <input type="text" id="inNome" placeholder="Digite seu nome...">
-            <input type="number" id="inIdade" placeholder="Sua idade aqui...">
-            <input type="text" id="inCpf" placeholder="Digite seu CPF aqui...">
+            <div id="divCpfPes">
+                <label for="inCpfEditar">Pesquisar o CPF do Atleta: </label><input type="text" id="inCpfEditar"
+                    placeholder="Pesquise o CPF aqui...">
+            </div>
+            <div id="divNome">
+                <label for="inNome">Nome do Atleta: </label><input type="text" id="inNome" placeholder="Nome...">
+            </div>
+            <div id="divIdade">
+                <label for="inIdade">Idade do Atleta: </label><input type="number" id="inIdade" placeholder="Idade...">
+            </div>
+            <div id="divCpf">
+                <label for="inCpf">CPF do Atleta: </label><input type="text" id="inCpf" placeholder="CPF...">
+            </div>
+
             <p> <input type="button" id="btOk" value="Executar" disabled> </p>
             <p id="outSaida"> </p>
-            
+
             <section class="table"></section>
         </div>
     </main>
@@ -55,7 +67,7 @@
             <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
         </div>
     </footer>
-    <script type="module" src="/sources/functionsViews.js"></script>
+    <script type="module" src="/views/functionsViews.js"></script>
 </body>
 
 </html>

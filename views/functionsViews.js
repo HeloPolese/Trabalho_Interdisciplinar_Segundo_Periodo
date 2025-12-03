@@ -1,9 +1,13 @@
 //atletas------------>
 const selectOpcao = document.getElementById("selectOpcao");
+const inCpfEditar = document.getElementById("inCpfEditar");
 const inNome = document.getElementById("inNome");
 const inIdade = document.getElementById("inIdade");
 const inCpf = document.getElementById("inCpf");
-const btFiltrar = document.getElementById("btFiltrar");
+const divCpfPes = document.getElementById("divCpfPes");
+const divNome = document.getElementById("divNome");
+const divIdade = document.getElementById("divIdade");
+const divCpf = document.getElementById("divCpf");
 
 selectOpcao.addEventListener("change", verificarOpcao);
 
@@ -12,36 +16,35 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function verificarOpcao() {
+    divCpfPes.style.display = "none";
+    divNome.style.display = "none";
+    divIdade.style.display = "none";
+    divCpf.style.display = "none";
+
     switch (selectOpcao.value) {
         case "cadastrar-atleta":
-            inNome.disabled = false;
-            inIdade.disabled = false;
-            inCpf.disabled = false;
-            inCpf.style.display = "block";
-            inNome.style.display = "block";
-            inIdade.style.display = "block";
+            divCpfPes.style.display = "block";
+            divNome.style.display = "block";
+            divIdade.style.display = "block";
+            divCpf.style.display = "block";
             inNome.focus();
             break;
-            case "editar-atleta":
-            inNome.disabled = false;
-            inIdade.disabled = false;
-            inCpf.disabled = false;
-            inCpf.style.display = "block";
-            inNome.style.display = "block";
-            inIdade.style.display = "block";
+        case "editar-atleta":
+            divCpfPes.style.display = "block";
+            divNome.style.display = "block";
+            divIdade.style.display = "block";
+            divCpf.style.display = "block";
             inNome.focus();
             break;
-            case "excluir-atleta":
-            inNome.disabled = false;
-            inIdade.disabled = true;
-            inCpf.display = false;
-            inCpf.style.display = "block";
-            inNome.style.display = "block";
-            inIdade.style.display = "none";
-            break;        
-            default:
-            inNome.style.display = "none";
-            inIdade.style.display = "none";
-            inCpf.style.display = "none";
+        case "excluir-atleta":
+            divCpfPes.style.display = "block";
+            divNome.style.display = "none";
+            divIdade.style.display = "none";
+            divCpf.style.display = "none";
+            inNome.focus();
+            break;
+        case "listar-atletas":
+            // Nenhum campo adicional necessário
+            break;
     }
 }
