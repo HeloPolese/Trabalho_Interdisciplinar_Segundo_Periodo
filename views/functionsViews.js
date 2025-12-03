@@ -49,7 +49,7 @@ function verificarOpcao() {
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
-            inNome.focus();
+            inCpfEditar.focus();
             break;
         case "excluir-atleta":
             divCpfPes.style.display = "block";
@@ -60,10 +60,11 @@ function verificarOpcao() {
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
-            inNome.focus();
+            inCpfEditar.focus();
             break;
         case "listar-atletas":
             // Nenhum campo adicional necessário
+            btOk.focus();
             break;
     }
 }
