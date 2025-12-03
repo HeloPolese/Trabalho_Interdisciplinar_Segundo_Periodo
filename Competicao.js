@@ -1,4 +1,4 @@
-class Competicao {
+export class Competicao {
 
     #idCompeticao;
     #nome;
