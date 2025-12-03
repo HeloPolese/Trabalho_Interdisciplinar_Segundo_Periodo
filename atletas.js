@@ -1,21 +1,18 @@
 class Atleta{
-    static #qtdAtletas = 0;
     #idAtleta;
     #nome;
     #idade;
     #cpf;
 
-    constructor(nome,idade = "",cpf){
+    constructor(id,nome,idade = "",cpf){
         this.#nome = nome;  
         this.#idade = idade;
         this.#cpf = cpf;
-
-        Atleta.#qtdAtletas++;
-        this.#idAtleta = ""+ new Date().getFullYear() + Atleta.#qtdAtletas;
+        this.#idAtleta = id;
     }
-
-   static get quantidadeAtletas(){
-        return Atleta.#qtdAtletas;
+    
+    get idAtleta(){
+        return this.#idAtleta;
     }
     get nome(){
         return this.#nome;
