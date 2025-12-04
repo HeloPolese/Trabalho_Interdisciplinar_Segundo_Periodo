@@ -13,7 +13,6 @@ const outSaida = document.getElementById("outSaida");
 const btOk = document.getElementById("btOk");
 const table = document.getElementById("table");
 
-
 selectOpcao.addEventListener("change", verificarOpcao);
 
 btOk.addEventListener("click", executarFuncaoAtleta);
