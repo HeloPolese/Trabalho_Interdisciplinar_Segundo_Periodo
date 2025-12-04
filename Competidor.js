@@ -7,10 +7,24 @@ export class Competidor extends Atleta {
     #refAtleta;
     #tempoMinutos;
 
-    constructor(refCompeticao, refAtleta, tempoMinutos = null, nome, idade = "", cpf) {
-        super(nome, idade, cpf, refAtleta);
+    constructor(refCompeticao, refAtleta, tempoMinutos = null, nome, idade = "", cpf, posicao) {
+        super(nome, idade, cpf);
+        this.posicao = posicao;
         this.#refCompeticao = refCompeticao;
         this.#tempoMinutos = tempoMinutos;
+    }
+
+    get nome() {
+        return super.nome;
+    }
+    get idade() {
+        return super.idade;
+    }
+    get cpf() {
+        return super.cpf;
+    }
+    get posicao() { 
+        return this.posicao;
     }
     get refCompeticao() {
         return this.#refCompeticao;
@@ -37,4 +51,9 @@ export class Competidor extends Atleta {
             this.#refAtleta = atleta.idAtleta;
         }   
     }  
+    set posicao(novaPosicao){
+        if(novaPosicao != undefined && novaPosicao > 0 && novaPosicao < Competicao.limiteParticipante){
+            this.posicao = novaPosicao;
+        }   
+    }
 }
