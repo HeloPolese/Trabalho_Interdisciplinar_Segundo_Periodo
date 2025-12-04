@@ -5,6 +5,12 @@
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -79,9 +85,28 @@ main {
     cursor: pointer;
 }
 
-input{
+input {
     padding: 10px;
     font-size: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .inputs {
@@ -98,6 +123,7 @@ input{
     width: 165px;
     border-radius: 5px;
     padding: 6px;
+    margin-bottom: 40px;
 }
 
 #btOk:hover {
@@ -105,6 +131,9 @@ input{
     transform: scale(1.1);
 }
 
+#outSaida {
+    margin-bottom: 10px;
+}
 
 .title {
     display: flex;
@@ -117,6 +146,47 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Container onde a tabela aparece */
+#table {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+/* Estilo da tabela gerada no JS */
+#table table {
+    border-collapse: collapse;
+    min-width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho */
+#table thead {
+    background-color: black;
+    color: white;
+}
+
+/* Títulos */
+#table th {
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Células */
+#table td {
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
 }
 
 /* FOOTER ----------------------------------------------------------------------------------------------------------------------- */
