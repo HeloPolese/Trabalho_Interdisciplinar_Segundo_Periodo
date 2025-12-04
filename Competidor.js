@@ -9,10 +9,9 @@ export class Competidor extends Atleta {
     #tempoMinutos;
 
     constructor(idCompetidor, idCompeticao, idAtleta, tempoMinutos = null, nome, idade = "", cpf) {
-        super(nome, idade, cpf);
+        super(nome, idade, cpf, idAtleta);
         this.#idCompetidor = idCompetidor;
         this.#idCompeticao = idCompeticao;
-        this.#idAtleta = idAtleta;
         this.#tempoMinutos = tempoMinutos;
     }
     get idCompetidor() {
@@ -33,5 +32,16 @@ export class Competidor extends Atleta {
             this.#tempoMinutos = novoTempoMinutos;
         }
     }   
+    set idCompeticao(competicao){
+        if(competicao != undefined && competicao instanceof Competicao){
+            this.#idCompeticao = competicao.idCompeticao;
+        }
+    }
+
+    set idAtleta(atleta){
+        if(atleta != undefined && atleta instanceof Atleta){
+            this.#idAtleta = atleta.idAtleta;
+        }   
+    }
     
 }
