@@ -38,6 +38,8 @@ function verificarOpcao() {
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
+            outSaida.textContent = "";
+            table.textContent = "";
             inNome.focus();
             break;
         case "editar-atleta":
@@ -49,6 +51,8 @@ function verificarOpcao() {
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
+            outSaida.textContent = "";
+            table.textContent = "";
             inCpfEditar.focus();
             break;
         case "excluir-atleta":
@@ -60,10 +64,14 @@ function verificarOpcao() {
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
+            outSaida.textContent = "";
+            table.textContent = "";
             inCpfEditar.focus();
             break;
         case "listar-atletas":
             // Nenhum campo adicional necessário
+            outSaida.textContent = "";
+            table.textContent = "";
             btOk.focus();
             break;
     }
@@ -77,10 +85,14 @@ function executarFuncaoAtleta() {
 
     switch (opcao) {
         case "cadastrar-atleta":
-            if (inNome.value == "" && inIdade.value == "" && inCpf.value == "") {
+            if (inNome.value == "" || inIdade.value == "" || inCpf.value == "" || !isNaN(inNome.value)) {
                 outSaida.style.color = "red";
-                outSaida.textContent = "Por favor, preencha todos os campos.";
-
+                outSaida.textContent = "Por favor, preencha todos os campos com valor valido.";
+                inNome.focus();
+            } else if (inIdade.value <= 0 || inIdade.value > 100) {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, insira uma idade válida.";
+                inIdade.focus();
             } else {
                 if (Atleta.cadastrarAtleta(inNome.value, inIdade.value, inCpf.value)) {
                     outSaida.style.color = "blue";
@@ -93,10 +105,16 @@ function executarFuncaoAtleta() {
             }
             break;
         case "editar-atleta":
-            if (inCpfEditar.value == "" && inNome.value == "" && inIdade.value == "" && inCpf.value == "") {
+            if (inCpfEditar.value == "") {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Por favor, preencha todos os campos.";
-            } else {
+                inCpfEditar.focus();
+            } else if (inIdade.value <= 0 || inIdade.value > 100) {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, insira uma idade válida.";
+                inIdade.focus();
+            }
+            else {
                 if (Atleta.editarAtleta(inCpfEditar.value, inNome.value, inIdade.value, inCpf.value)) {
                     outSaida.style.color = "blue";
                     outSaida.textContent = "Editado com sucesso!";
@@ -110,6 +128,7 @@ function executarFuncaoAtleta() {
             if (inCpfEditar.value == "") {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Por favor, preencha o campo CPF.";
+                inCpfEditar.focus();
             } else {
                 if (Atleta.excluirAtleta(inCpfEditar.value)) {
                     outSaida.style.color = "blue";

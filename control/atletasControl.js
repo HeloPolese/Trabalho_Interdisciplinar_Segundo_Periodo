@@ -12,7 +12,7 @@ export function cadastrarAtleta(nome, idade, cpf) {
             return true;
         }
     }
-    return false
+    return false;
 }
 
 export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
