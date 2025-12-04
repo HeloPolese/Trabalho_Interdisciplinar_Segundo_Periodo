@@ -3,26 +3,20 @@ import Competicao from "./Competicao.js";
 
 export class Competidor extends Atleta {
 
-    #idCompetidor;
-    #idCompeticao;
-    #idAtleta;
+    #refCompeticao;
+    #refAtleta;
     #tempoMinutos;
 
-    constructor(idCompetidor, idCompeticao, idAtleta, tempoMinutos = null, nome, idade = "", cpf) {
-        super(nome, idade, cpf, idAtleta);
-        this.#idCompetidor = idCompetidor;
-        this.#idCompeticao = idCompeticao;
+    constructor(refCompeticao, refAtleta, tempoMinutos = null, nome, idade = "", cpf) {
+        super(nome, idade, cpf, refAtleta);
+        this.#refCompeticao = refCompeticao;
         this.#tempoMinutos = tempoMinutos;
     }
-    get idCompetidor() {
-        return this.#idCompetidor;
-    }       
-
-    get idCompeticao() {
-        return this.#idCompeticao;
+    get refCompeticao() {
+        return this.#refCompeticao;
     }   
-    get idAtleta() {
-        return this.#idAtleta;
+    get refAtleta() {
+        return this.#refAtleta;
     }
     get tempoMinutos() {
         return this.#tempoMinutos;
@@ -32,16 +26,15 @@ export class Competidor extends Atleta {
             this.#tempoMinutos = novoTempoMinutos;
         }
     }   
-    set idCompeticao(competicao){
+    set refCompeticao(competicao){
         if(competicao != undefined && competicao instanceof Competicao){
-            this.#idCompeticao = competicao.idCompeticao;
+            this.#refCompeticao = competicao.idCompeticao;
         }
     }
 
-    set idAtleta(atleta){
+    set refAtleta(atleta){
         if(atleta != undefined && atleta instanceof Atleta){
-            this.#idAtleta = atleta.idAtleta;
+            this.#refAtleta = atleta.idAtleta;
         }   
-    }
-    
+    }  
 }
