@@ -56,4 +56,10 @@ export class Competidor extends Atleta {
             this.posicao = novaPosicao;
         }   
     }
+
+    toString(){
+        return  super.toString() +
+                `\nPosição: ${this.posicao}` +
+                `\nTempo em minutos: ${this.tempoMinutos}`;
+    }
 }
