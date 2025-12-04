@@ -14,9 +14,15 @@ export function cadastrarAtleta(nome, idade, cpf) {
     }
     return false;
 }
-
 export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
     let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
+
+    let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf); // verifica se ele nao vai cadastrar um cpf repetido
+
+    if (cpfRepetido) {
+        return false;
+    }
+
     if (buscaObj != undefined) {
         buscaObj.nome = novoNome;
         buscaObj.idade = novaIdade;
