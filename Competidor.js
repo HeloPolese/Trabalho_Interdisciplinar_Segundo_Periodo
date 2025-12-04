@@ -57,11 +57,9 @@ export class Competidor extends Atleta {
         }   
     }
 
-    tosturing(){
-        return "Nome: " + this.nome + "\n" +
-               "Idade: " + this.idade + "\n" +
-               "CPF: " + this.cpf + "\n" +
-               "Posição: " + this.posicao + "\n" +
-               "Tempo em minutos: " + this.tempoMinutos + "\n";
+    toString(){
+        return  super.toString() +
+                `\nPosição: ${this.posicao}` +
+                `\nTempo em minutos: ${this.tempoMinutos}`;
     }
 }
