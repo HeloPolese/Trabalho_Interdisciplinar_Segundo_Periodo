@@ -56,72 +56,34 @@ export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia
 }
 
 
-export function editarCompeticao(id, dados) {
+export function editarCompeticao(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint, grauDificuldade, altimetria) {
 
-    let competicao = null;
+    let competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
 
-    for (let i = 0; i < listaCompeticoes.length; i++) {
-        if (listaCompeticoes[i].idCompeticao == id) {
-            competicao = listaCompeticoes[i];
-            break;
-        }
-    }
-
-    if (competicao == null) {
+    if (!competicao) {
         return "Competição não encontrada!";
     }
 
+    if (nome !== undefined) competicao.nome = nome;
+    if (data !== undefined) competicao.data = data;
+    if (local !== undefined) competicao.local = local;
+    if (distancia !== undefined) competicao.distancia = distancia;
+    if (limiteParticipante !== undefined) competicao.limiteParticipante = limiteParticipante;
+    if (preco !== undefined) competicao.preco = preco;
+    if (limiteTempoMinutos !== undefined) competicao.limiteTempoMinutos = limiteTempoMinutos;
+    if (qtdCheckPoint !== undefined) competicao.qtdCheckPoint = qtdCheckPoint;
+    if (grauDificuldade !== undefined) competicao.grauDificuldade = grauDificuldade;
+    if (altimetria !== undefined) competicao.altimetria = altimetria;
 
-    if (dados.nome !== undefined) {
-        competicao.nome = dados.nome;
-    }
-
-    if (dados.data !== undefined) {
-        competicao.data = dados.data;
-    }
-
-    if (dados.local !== undefined) {
-        competicao.local = dados.local;
-    }
-
-    if (dados.distancia !== undefined) {
-        competicao.distancia = dados.distancia;
-    }
-
-    if (dados.limiteParticipante !== undefined) {
-        competicao.limiteParticipante = dados.limiteParticipante;
-    }
-
-    if (dados.preco !== undefined) {
-        competicao.preco = dados.preco;
-    }
-
-    if (dados.limiteTempoMinutos !== undefined) {
-        competicao.limiteTempoMinutos = dados.limiteTempoMinutos;
-    }
-
-
-    if (competicao.qtdCheckPoint !== undefined && dados.qtdCheckPoint !== undefined) {
-        competicao.qtdCheckPoint = dados.qtdCheckPoint;
-    }
-
-    if (competicao.grauDificuldade !== undefined && dados.grauDificuldade !== undefined) {
-        competicao.grauDificuldade = dados.grauDificuldade;
-    }
-
-    if (competicao.altimetria !== undefined && dados.altimetria !== undefined) {
-        competicao.altimetria = dados.altimetria;
-    }
-
-    return competicao;
-
+    return true;
 }
 
 
-export function excluirCompeticao(id){
+
+export function excluirCompeticao(idCompeticao){
 
     for (let i = 0; i < listaCompeticoes.length; i++) {
-        if (listaCompeticoes[i].idCompeticao == id) {
+        if (listaCompeticoes[i].idCompeticao == idCompeticao) {
             let removida = listaCompeticoes[i];
             listaCompeticoes.splice(i, 1);
             return removida;
@@ -129,4 +91,3 @@ export function excluirCompeticao(id){
     }
     return null;
 }
-
