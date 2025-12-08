@@ -1,34 +1,24 @@
 import Atleta from "./Atleta.js";
-import Competicao from "./Competicao.js";
 
-export class Competidor extends Atleta {
+export class Competidor {   //extends Atleta {
 
-    #refCompeticao;
     #refAtleta;
     #tempoMinutos;
+    #posicao
 
-    constructor(refCompeticao, refAtleta, tempoMinutos = null, nome, idade = "", cpf, posicao) {
-        super(nome, idade, cpf);
+    constructor(refAtleta, tempoMinutos = null, posicao = -1) {
+        if (refAtleta instanceof Atleta) {
+            this.#refAtleta = refAtleta.idAtleta;
+        } else {
+            this.#refAtleta = undefined; //aceita o id do atleta diretamente
+        }
         this.posicao = posicao;
-        this.#refCompeticao = refCompeticao;
         this.#tempoMinutos = tempoMinutos;
     }
 
-    get nome() {
-        return super.nome;
-    }
-    get idade() {
-        return super.idade;
-    }
-    get cpf() {
-        return super.cpf;
-    }
     get posicao() { 
         return this.posicao;
-    }
-    get refCompeticao() {
-        return this.#refCompeticao;
-    }   
+    }  
     get refAtleta() {
         return this.#refAtleta;
     }
@@ -40,26 +30,23 @@ export class Competidor extends Atleta {
             this.#tempoMinutos = novoTempoMinutos;
         }
     }   
-    set refCompeticao(competicao){
-        if(competicao != undefined && competicao instanceof Competicao){
-            this.#refCompeticao = competicao.idCompeticao;
-        }
-    }
 
     set refAtleta(atleta){
         if(atleta != undefined && atleta instanceof Atleta){
-            this.#refAtleta = atleta.idAtleta;
+            this.#refAtleta = atleta;
         }   
     }  
     set posicao(novaPosicao){
         if(novaPosicao != undefined && novaPosicao > 0 && novaPosicao < Competicao.limiteParticipante){
-            this.posicao = novaPosicao;
+            this.#posicao = novaPosicao;
         }   
     }
 
     toString(){
-        return  super.toString() +
-                `\nPosição: ${this.posicao}` +
-                `\nTempo em minutos: ${this.tempoMinutos}`;
+        return  '\n Nome' + this.#refAtleta.nome +
+                '\n cpf: ' + this.#refAtleta.cpf +
+                '\n Idade: ' + this.#refAtleta.idade +
+                `\n Posição: ${this.posicao}` +
+                `\n Tempo em minutos: ${this.tempoMinutos}`;
     }
 }

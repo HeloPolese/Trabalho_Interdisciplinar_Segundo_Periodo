@@ -86,3 +86,8 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
     }
     return null;
 }
+
+export function buscarAtleta(cpf) {
+    let atletaEncontrado = vetAtletas.find(obj => obj.cpf == cpf);  
+    return atletaEncontrado;
+}
