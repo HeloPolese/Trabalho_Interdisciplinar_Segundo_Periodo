@@ -264,6 +264,16 @@ function executarFuncaoCorrida() {
             else if (competicaoController.editarCompeticao(inBuscarId.value, inNomeCorrida.value, inDataCorrida.value, inLocal.value, inDistancia.value, inLimiteParti.value, inPreco.value, inLimiteTempo.value, inCheckPoint.value, inGrauDificuldade.value, inAltimetria.value)) {
                 outSaida.style.color = "green";
                 outSaida.textContent = "Competição editada com sucesso!";
+                inNomeCorrida.value = "";
+                inDataCorrida.value = "";
+                inLocal.value = "";
+                inDistancia.value = "";
+                inCheckPoint.value = "";
+                inGrauDificuldade.value = "";
+                inAltimetria.value = "";
+                inLimiteParti.value = "";
+                inPreco.value = "";
+                inLimiteTempo.value = "";
             }
             break;
             case "excluir-competicao":
@@ -275,6 +285,16 @@ function executarFuncaoCorrida() {
             else if (competicaoController.excluirCompeticao(inBuscarId.value)){
                 outSaida.style.color = "green";
                 outSaida.textContent = "Competição excluída com sucesso!";
+                inNomeCorrida.value = "";
+                inDataCorrida.value = "";
+                inLocal.value = "";
+                inDistancia.value = "";
+                inCheckPoint.value = "";
+                inGrauDificuldade.value = "";
+                inAltimetria.value = "";
+                inLimiteParti.value = "";
+                inPreco.value = "";
+                inLimiteTempo.value = "";
             }
             else {
                 outSaida.style.color = "red";
