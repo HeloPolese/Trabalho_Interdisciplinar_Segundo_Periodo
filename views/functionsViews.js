@@ -104,7 +104,7 @@ function executarFuncaoAtleta() {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Por favor, preencha todos os campos.";
                 inCpfEditar.focus();
-            } else if (inIdade.value <= 0 || inIdade.value > 100) {
+            } else if (inIdade.value > 100) {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Por favor, insira uma idade válida.";
                 inIdade.focus();
