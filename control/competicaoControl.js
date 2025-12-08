@@ -1,12 +1,11 @@
-import { Competicao } from "../Competicao.js";
 import { Maratona } from "../Maratona.js";
 import { CompeticaoTrilha } from "../CompeticaoTrilha.js";
 
-var listaCompeticoes = [];
+export var listaCompeticoes = [];
 
 function gerarID() {
     if (listaCompeticoes.length == 0) {
-        return 0;
+        return 1;
     } else {
         let maiorID = listaCompeticoes[0].idCompeticao;
 
@@ -20,40 +19,40 @@ function gerarID() {
     }
 }
 
-export function cadastrarCompeticao(obj) {
+export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos,qtdCheckPoint,
+                                    grauDificuldade, altimetria) {
 
     let novoID = gerarID();
     let novaCompeticao;
-
-    if (obj.tipo == "TRILHA") {
+    
+    if (nomeModalidade == "TRILHA") {
         novaCompeticao = new CompeticaoTrilha(
-            novoID,
-            obj.nome,
-            obj.data,
-            obj.local,
-            obj.distancia,
-            obj.limiteParticipante,
-            obj.preco,
-            obj.limiteTempoMinutos,
-            obj.qtdCheckPoint,
-            obj.grauDificuldade
+            nome,
+            data,
+            local,
+            distancia,
+            limiteParticipante,
+            preco,
+            limiteTempoMinutos,
+            qtdCheckPoint,
+            grauDificuldade,
+            novoID
         );
-    } else if (obj.tipo == "MARATONA") {
+    } else if (nomeModalidade == "MARATONA") {
         novaCompeticao = new Maratona(
-            novoID,
-            obj.nome,
-            obj.data,
-            obj.local,
-            obj.distancia,
-            obj.limiteParticipante,
-            obj.preco,
-            obj.limiteTempoMinutos,
-            obj.altimetria
+            nome,
+            data,
+            local,
+            distancia,
+            limiteParticipante,
+            preco,
+            limiteTempoMinutos,
+            altimetria,
+            novoID
         );
     }
-
     listaCompeticoes.push(novaCompeticao);
-    return listaCompeticoes;
+    return true;
 }
 
 

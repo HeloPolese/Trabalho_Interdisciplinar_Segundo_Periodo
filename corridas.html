@@ -22,54 +22,80 @@
             <h3>Editar Corridas</h3>
         </div>
         <div class="home-text">
-            <p>As corridas cadastradas no sistema incluem provas de Maratona
+            <p>As Competições cadastradas no sistema incluem provas de Maratona
                 e Trail Running,<br> permitindo registrar informações básicas, controlar
                 participantes e visualizar os <br> eventos de forma simples e organizada.</p>
         </div>
         <div class="select">
             <select id="selectOpcaoCorrida" class="selectOpcao">
                 <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
-                <option value="cadastrar-competicao">Cadastrar Corrida</option>
-                <option value="editar-competicao">Editar Corrida</option>
-                <option value="excluir-competicao">Excluir Corrida</option>
-                <option value="listar-competicao">Listar Corridas</option>
-                <option value="adicionar-atleta-competicao">Adicionar Atleta a corrida</option>
-                <option value="listar-competidores-corrida">Listar Competidores de corrida</option>
+                <option value="cadastrar-competicao">Cadastrar Competição</option>
+                <option value="editar-competicao">Editar Competição</option>
+                <option value="excluir-competicao">Excluir Competição</option>
+                <option value="listar-competicao">Listar Competição</option>
+                <option value="adicionar-atleta-competicao">Adicionar Atleta a Competição</option>
+                <option value="listar-competidores-corrida">Listar Competidores de Competição</option>
                 <option value="relatorio-competicao">Listar Relatório de Competição</option>
                 <option value="relatorio-todas-competicoes">Listar Relatório de Competições</option>
                 <option value="excluir-competidor-competicao">Excluir Competidor da Competição</option>
             </select>
         </div>
         <div class="inputs">
+            <div id="divSelection">
+                <label for="selectModalidade">Escolha a modalidade: </label>
+                <select id="selectModalidade" class="selectOpcao">
+                    <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
+                    <option value="MARATONA">Maratona</option>
+                    <option value="TRILHA">Trilha</option>
+                </select>
+            </div>
             <div id="divNomeCorrida">
-                <label for="inNomeCorrida">Nome da Corrida: </label><input type="text" id="inNomeCorrida"
-                    placeholder="Insira o nome da Corrida...">
+                <label for="inNomeCorrida">Nome da Competição: </label><input type="text" id="inNomeCorrida"
+                    placeholder="Insira o nome da Competição...">
             </div>
             <div id="divCpfAtletas">
-                <label for="inCpfAtleta">CPF do Atleta: </label><input type="text" id="inCpfAtleta" placeholder="Insira o nome do Atleta...">
+                <label for="inCpfAtleta">CPF do Atleta: </label><input type="text" id="inCpfAtleta"
+                    placeholder="Insira o nome do Atleta...">
             </div>
             <div id="divData">
-                <label for="inDataCorrida">Data da Corrida: </label><input type="text" id="inDataCorrida" placeholder="Insira a data da Corrida... ">
+                <label for="inDataCorrida">Data da Competição: </label><input type="text" id="inDataCorrida"
+                    placeholder="Insira a data da Competição... ">
             </div>
             <div id="divLocal">
-                <label for="inLocal">Local da Corrida: </label><input type="text" id="inLocal" placeholder="Insira o local da Corrida...">
+                <label for="inLocal">Local da Competição: </label><input type="text" id="inLocal"
+                    placeholder="Insira o local da Competição...">
             </div>
             <div id="divDistancia">
-                <label for="inDistancia">Distância da Corrida: </label><input type="text" id="inDistancia" placeholder="Insira a distância da Corrida...">
+                <label for="inDistancia">Distância da Competição: </label><input type="number" id="inDistancia"
+                    placeholder="Insira a distância da Competição em KM...">
             </div>
             <div id="divLimiteAtletas">
-                <label for="inLimiteParti">Limite de Participantes </label><input type="text" id="inLimiteParti" placeholder="Insira o limite de participantes...">
+                <label for="inLimiteParti">Limite de Participantes </label><input type="number" id="inLimiteParti"
+                    placeholder="Insira o limite de participantes...">
             </div>
             <div id="divPreco">
-                <label for="inPreco">Preço da Corrida: </label><input type="text" id="inPreco" placeholder="Insira o preço da Corrida...">
+                <label for="inPreco">Preço da Competição: </label><input type="number" id="inPreco"
+                    placeholder="Insira o preço da Competição...">
             </div>
             <div id="divLimiteTempo">
-                <label for="inLimiteTempo">Limite de Tempo da Corrida: </label><input type="text" id="inLimiteTempo" placeholder="Insira o limite de tempo da Corrida...">
+                <label for="inLimiteTempo">Limite de Tempo da Competição: </label><input type="text" id="inLimiteTempo"
+                    placeholder="Insira o limite de tempo da Competição...">
             </div>
-
-            <p> <input type="button" id="btOk" value="Executar" disabled> </p>
+            <div id="divAltimetria">
+                <label for="inAltimetria">Altimetria da Competição: </label><input type="number" id="inAltimetria"
+                    placeholder="Insira a altimetria da Competição em metros...">
+            </div>
+            <div id="divQtdCheckPoint">
+                <label for="inCheckPoint">Quantidade de Checkpoints: </label><input type="number" id="inCheckPoint"
+                    placeholder="Insira a quantidade de Checkpoints...">
+            </div>
+            <div id="divGrauDificuldade">
+                <label for="inGrauDificuldade">Grau de Dificuldade</label><input type="text" id="inGrauDificuldade"
+                    placeholder="Insira o grau de dificuldade (ex: Facil, medio, dificil)">
+            </div>
+            <p> <input type="button" id="btOk" value="Executar"> </p>
             <p id="outSaida"> </p>
-            <section class="table"></section>
+            <section id="table"></section>
         </div>
     </main>
     <footer>
