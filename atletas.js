@@ -10,7 +10,6 @@ export class Atleta{
         this.#cpf = cpf;
         this.#idAtleta = id;
     }
-
     get idAtleta(){
         return this.#idAtleta;
     }

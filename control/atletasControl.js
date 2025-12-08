@@ -14,7 +14,6 @@ export function cadastrarAtleta(nome, idade, cpf) {
     }
     return false;
 }
-
 export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
     let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
 
@@ -32,6 +31,7 @@ export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
     }
     return false;
 }
+
 
 export function excluirAtleta(cpf) {
     let indiceAtleta = vetAtletas.findIndex(obj => obj.cpf == cpf);
