@@ -24,7 +24,7 @@ export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
         return false;
     }
 
-    if (buscaObj != undefined) {
+    if (buscaObj != undefined && novoNome != "" && novaIdade > 0 && novoCpf.length === 11) {
         buscaObj.nome = novoNome;
         buscaObj.idade = novaIdade;
         buscaObj.cpf = novoCpf;
