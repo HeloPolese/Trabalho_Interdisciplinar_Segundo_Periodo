@@ -11,8 +11,10 @@ const inCheckPoint = document.getElementById("inCheckPoint");
 const inGrauDificuldade = document.getElementById("inGrauDificuldade");
 const divAltimetria = document.getElementById("divAltimetria");
 const divGrauDificuldade = document.getElementById("divGrauDificuldade");
+const divBuscarId = document.getElementById("divBuscarId");
 const inAltimetria = document.getElementById("inAltimetria");
 const inLimiteTempo = document.getElementById("inLimiteTempo");
+const inBuscarId = document.getElementById("inBuscarId");
 const btOk = document.getElementById("btOk");
 const outSaida = document.getElementById("outSaida");
 const divNomeCorrida = document.getElementById("divNomeCorrida");
@@ -29,10 +31,14 @@ const divSelection = document.getElementById("divSelection");
 const selectModalidade = document.getElementById("selectModalidade");
 const table = document.getElementById("table");
 
-selectModalidade.addEventListener("change",verificarModalidade);
+selectModalidade.addEventListener("change", verificarModalidade);
 selectOpcaoCorrida.addEventListener("change", verificarOpcaoCorridas);
 
 btOk.addEventListener("click", executarFuncaoCorrida);
+
+btOk.addEventListener("click", () => {
+  selectModalidade.value = "Selecione-Uma-Opção";
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     verificarOpcaoCorridas();
@@ -41,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function verificarOpcaoCorridas() {
     divNomeCorrida.style.display = "none";
+    divBuscarId.style.display = "none";
     divSelection.style.display = "none";
     divCpfAtletas.style.display = "none";
     divData.style.display = "none";
@@ -48,105 +55,153 @@ function verificarOpcaoCorridas() {
     divDistancia.style.display = "none";
     divLimiteAtletas.style.display = "none";
     divPreco.style.display = "none";
-
+    divAltimetria.style.display = "none";
+    divGrauDificuldade.style.display = "none";
+    divQtdCheckPoint.style.display = "none";
     divLimiteTempo.style.display = "none";
 
     switch (selectOpcaoCorrida.value) {
         case "cadastrar-competicao":
             divSelection.style.display = "block";
             divNomeCorrida.style.display = "block";
-            divCpfAtletas.style.display = "none";
             divData.style.display = "block";
             divLocal.style.display = "block";
             divDistancia.style.display = "block";
             divLimiteAtletas.style.display = "block";
             divPreco.style.display = "block";
             divLimiteTempo.style.display = "block";
-            inNomeCorrida.focus();
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "editar-competicao":
+            divBuscarId.style.display = "block";
+            divSelection.style.display = "block";
             divNomeCorrida.style.display = "block";
-            divCpfAtletas.style.display = "none";
-            divData.style.display = "block";
-            divLocal.style.display = "none";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
-            inNomeCorrida.focus();
-            break;
-        case "excluir-competicao":
-            divNomeCorrida.style.display = "block";
-            divCpfAtletas.style.display = "none";
             divData.style.display = "block";
             divLocal.style.display = "block";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
-            inNomeCorrida.focus();
+            divDistancia.style.display = "block";
+            divLimiteAtletas.style.display = "block";
+            divPreco.style.display = "block";
+            divLimiteTempo.style.display = "block";
+            inNomeCorrida.value = "";
+            inBuscarId.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
+            break;
+        case "excluir-competicao":
+            divBuscarId.style.display = "block";
+            inBuscarId.value = "";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "listar-competicao":
-            divNomeCorrida.style.display = "none";
-            divCpfAtletas.style.display = "none";
-            divData.style.display = "none";
-            divLocal.style.display = "none";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "adicionar-atleta-competicao":
             divNomeCorrida.style.display = "block";
             divCpfAtletas.style.display = "block";
             divData.style.display = "block";
             divLocal.style.display = "block";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
             divSelection.style.display = "block";
-            divLimiteTempo.style.display = "none";
-            inNomeCorrida.focus();
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "listar-competidores-corrida":
             divNomeCorrida.style.display = "block";
-            divCpfAtletas.style.display = "none";
             divData.style.display = "block";
             divLocal.style.display = "block";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "relatorio-competicao":
             divNomeCorrida.style.display = "block";
-            divCpfAtletas.style.display = "none";
             divData.style.display = "block";
             divLocal.style.display = "block";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "relatorio-todas-competicoes":
-            divNomeCorrida.style.display = "none";
-            divCpfAtletas.style.display = "none";
-            divData.style.display = "none";
-            divLocal.style.display = "none";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
             break;
         case "excluir-competidor-competicao":
             divNomeCorrida.style.display = "block";
             divCpfAtletas.style.display = "block";
             divData.style.display = "block";
-            divLocal.style.display = "none";
-            divDistancia.style.display = "none";
-            divLimiteAtletas.style.display = "none";
-            divPreco.style.display = "none";
-            divLimiteTempo.style.display = "none";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
     }
 }
 
@@ -169,6 +224,7 @@ function verificarModalidade() {
     }
 }
 function executarFuncaoCorrida() {
+    
     let opcao = selectOpcaoCorrida.value;
     outSaida.textContent = "";
     table.textContent = "";
@@ -180,7 +236,7 @@ function executarFuncaoCorrida() {
                 outSaida.textContent = "Por favor, preencha todos os campos para cadastrar a competição.";
                 inNomeCorrida.focus();
             }
-            else if (competicaoController.cadastrarCompeticao(selectModalidade.value, inNomeCorrida.value, inDataCorrida.value, inLocal.value, inDistancia.value, parseInt(inLimiteParti.value), parseFloat(inPreco.value), parseInt(inLimiteTempo.value), inCheckPoint.value, inGrauDificuldade.value, inAltimetria.value )) {
+            else if (competicaoController.cadastrarCompeticao(selectModalidade.value, inNomeCorrida.value, inDataCorrida.value, inLocal.value, inDistancia.value, parseInt(inLimiteParti.value), parseFloat(inPreco.value), parseInt(inLimiteTempo.value), inCheckPoint.value, inGrauDificuldade.value, inAltimetria.value)) {
                 outSaida.style.color = "green";
                 outSaida.textContent = "Competição cadastrada com sucesso!";
                 inNomeCorrida.value = "";
@@ -197,6 +253,32 @@ function executarFuncaoCorrida() {
             else {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Erro.";
+            }
+            break;
+        case "editar-competicao":
+            if (inNomeCorrida.value == "" || inDataCorrida.value == "") {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, preencha todos os campos para editar a competição.";
+                inNomeCorrida.focus();
+            }
+            else if (competicaoController.editarCompeticao(inNomeCorrida.value, inDataCorrida.value)) {
+                outSaida.style.color = "green";
+                outSaida.textContent = "Competição editada com sucesso!";
+            }
+            break;
+            case "excluir-competicao":
+            if (inBuscarId.value == "") {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Por favor, insira o ID da competição para excluir.";
+                inBuscarId.focus();
+            }
+            else if (competicaoController.excluirCompeticao(parseInt(inBuscarId.value))) {
+                outSaida.style.color = "green";
+                outSaida.textContent = "Competição excluída com sucesso!";
+            }
+            else {
+                outSaida.style.color = "red";
+                outSaida.textContent = "Erro ao excluir a competição. Verifique o ID e tente novamente.";
             }
             break;
     }

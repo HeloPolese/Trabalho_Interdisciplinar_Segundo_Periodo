@@ -78,8 +78,17 @@ main {
 
 .selectOpcao {
     width: 500px;
-
 }
+
+
+.selectOpcaoCorrida {
+    width: 300px;
+}
+
+.selectOpcaoCorrida:hover {
+    cursor: pointer;
+}
+
 
 .selectOpcao:hover {
     cursor: pointer;

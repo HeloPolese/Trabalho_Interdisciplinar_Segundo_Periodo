@@ -127,8 +127,6 @@ export function excluirCompeticao(id){
             return removida;
         }
     }
-
     return null;
-
 }
 
