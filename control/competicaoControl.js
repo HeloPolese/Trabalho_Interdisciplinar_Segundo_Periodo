@@ -4,6 +4,48 @@ import { Atleta } from "../model/atletas.js";
 
 export var listaCompeticoes = [];
 
+const salvo = localStorage.getItem("competicoes");
+if (salvo) {
+    const bruto = JSON.parse(salvo);
+
+    bruto.forEach(c => {
+        if (c.altimetria !== undefined) {
+            listaCompeticoes.push(
+                new Maratona(
+                    c.nome,
+                    c.data,
+                    c.local,
+                    c.distancia,
+                    c.limiteParticipante,
+                    c.preco,
+                    c.limiteTempoMinutos,
+                    c.altimetria,
+                    c.idCompeticao
+                )
+            );
+        } else {
+            listaCompeticoes.push(
+                new CompeticaoTrilha(
+                    c.nome,
+                    c.data,
+                    c.local,
+                    c.distancia,
+                    c.limiteParticipante,
+                    c.preco,
+                    c.limiteTempoMinutos,
+                    c.qtdCheckPoint,
+                    c.grauDificuldade,
+                    c.idCompeticao
+                )
+            );
+        }
+    });
+}
+
+function salvarStorage() {
+    localStorage.setItem("competicoes", JSON.stringify(listaCompeticoes));
+}
+
 export function gerarID() {
     if (listaCompeticoes.length == 0) {
         return 1;
@@ -52,9 +94,9 @@ export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia
         );
     }
     listaCompeticoes.push(novaCompeticao);
+    salvarStorage();
     return true;
 }
-
 
 export function editarCompeticao(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint, grauDificuldade, altimetria) {
 
@@ -75,20 +117,20 @@ export function editarCompeticao(idCompeticao, nome, data, local, distancia, lim
     if (grauDificuldade !== undefined && grauDificuldade == "") competicao.grauDificuldade = grauDificuldade;
     if (altimetria !== undefined && altimetria == "") competicao.altimetria = altimetria;
 
+    salvarStorage();
     return true;
 }
 
 export function excluirCompeticao(idCompeticao) {
-
     for (let i = 0; i < listaCompeticoes.length; i++) {
         if (listaCompeticoes[i].idCompeticao == idCompeticao) {
             let removida = listaCompeticoes[i];
             listaCompeticoes.splice(i, 1);
+            salvarStorage();
             return removida;
         }
     }
     return null;
-
 }
 
 export function adicionarAtleta(idCompeticao, atletaNome) {
@@ -96,6 +138,7 @@ export function adicionarAtleta(idCompeticao, atletaNome) {
         for (let i = 0; i < listaCompeticoes.length; i++) {
             if (listaCompeticoes[i].idCompeticao == idCompeticao) {
                 listaCompeticoes[i].adicionarAtleta(atletaNome);
+                salvarStorage();
                 return true;
             }
         }
@@ -154,7 +197,6 @@ export function relatorioCompeticao(idCompeticao) {
             thead.appendChild(cabecalhoLinha);
             tabela.appendChild(thead);
 
-
             lstCompeticoesFiltradas.forEach(competicao => {
                 var linha = document.createElement('tr');
                 lstCompeticoesFiltradas.indexOf(competicao);
@@ -183,15 +225,12 @@ export function relatorioCompeticao(idCompeticao) {
     return null;
 }
 
-
-
 export function excluirCompetidor(idCompeticao, cpfAtleta) {
     if (listaCompeticoes.length <= idCompeticao) {
         listaCompeticoes[idCompeticao.dataCompeticao].splice(cpfAtleta, 1);
+        salvarStorage();
         return true;
     } else {
         return false;
     }
-
-
 }
