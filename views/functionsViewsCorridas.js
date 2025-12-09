@@ -130,11 +130,9 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "adicionar-atleta-competicao":
-            divNomeCorrida.style.display = "block";
             divCpfAtletas.style.display = "block";
-            divData.style.display = "block";
-            divLocal.style.display = "block";
             divSelection.style.display = "block";
+            divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
