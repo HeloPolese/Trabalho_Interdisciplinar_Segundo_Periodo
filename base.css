@@ -123,6 +123,21 @@ select:focus {
     margin-top: 30px;
 }
 
+#btOkCorrida{
+    margin-top: 30px;
+    background-color: black;
+    color: white;
+    width: 165px;
+    border-radius: 5px;
+    padding: 6px;
+    margin-bottom: 40px;
+}
+
+#btOkCorrida:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 #btOk {
     margin-top: 30px;
     background-color: black;
@@ -136,6 +151,10 @@ select:focus {
 #btOk:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+#outSaidaCorrida{
+    margin-bottom: 50px;
 }
 
 #outSaida {

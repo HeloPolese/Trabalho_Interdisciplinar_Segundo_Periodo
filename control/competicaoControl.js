@@ -1,6 +1,6 @@
-import { Maratona } from "../Maratona.js";
-import { CompeticaoTrilha } from "../CompeticaoTrilha.js";
-import { Atleta } from "../atletas.js";
+import { Maratona } from "../model/Maratona.js";
+import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
+import { Atleta } from "../model/atletas.js";
 
 export var listaCompeticoes = [];
 
