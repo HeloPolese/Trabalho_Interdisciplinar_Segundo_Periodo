@@ -1,6 +1,7 @@
-import Atleta from "./Atleta.js";
+import { Atleta } from "./Atleta.js";
+import { Competicao } from "./Competicao.js";
 
-export class Competidor {   //extends Atleta {
+export class Competidor {
 
     #refAtleta;
     #tempoMinutos;
@@ -10,14 +11,14 @@ export class Competidor {   //extends Atleta {
         if (refAtleta instanceof Atleta) {
             this.#refAtleta = refAtleta.idAtleta;
         } else {
-            this.#refAtleta = undefined; //aceita o id do atleta diretamente
+            this.#refAtleta = undefined;
         }
-        this.posicao = posicao;
+        this.#posicao = posicao;
         this.#tempoMinutos = tempoMinutos;
     }
 
     get posicao() { 
-        return this.posicao;
+        return this.#posicao;
     }  
     get refAtleta() {
         return this.#refAtleta;
