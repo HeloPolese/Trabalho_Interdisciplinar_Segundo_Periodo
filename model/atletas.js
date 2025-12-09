@@ -5,7 +5,7 @@ export class Atleta{
     #cpf;
     #nacionalidade;
 
-    constructor(id,nome,idade = 0,cpf, .){
+    constructor(id,nome,idade = 0,cpf, nacionalidade = ""){
         this.#nome = nome;  
         this.#idade = idade;
         this.#cpf = cpf;
