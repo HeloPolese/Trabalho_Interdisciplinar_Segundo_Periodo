@@ -1,4 +1,4 @@
-import * as competicaoController from "../control/competicaoControl.js";
+import * as competicaoController from "../competicaoControl.js";
 
 const inNomeCorrida = document.getElementById("inNomeCorrida");
 const inCpfAtleta = document.getElementById("inCpfAtleta");

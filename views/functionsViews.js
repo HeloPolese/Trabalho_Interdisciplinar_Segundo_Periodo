@@ -1,4 +1,4 @@
-import * as Atleta from "../control/atletasControl.js";
+import * as Atleta from "../atletasControl.js";
 
 const selectOpcao = document.getElementById("selectOpcao");
 const inCpfEditar = document.getElementById("inCpfEditar");
