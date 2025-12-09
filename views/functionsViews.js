@@ -12,6 +12,8 @@ const divCpf = document.getElementById("divCpf");
 const outSaida = document.getElementById("outSaida");
 const btOk = document.getElementById("btOk");
 const table = document.getElementById("table");
+const divNacionalidade = document.getElementById("divNacionalidade");
+const inNacionalidade = document.getElementById("inNacionalidade");
 
 selectOpcao.addEventListener("change", verificarOpcao);
 
@@ -26,16 +28,19 @@ function verificarOpcao() {
     divNome.style.display = "none";
     divIdade.style.display = "none";
     divCpf.style.display = "none";
+    divNacionalidade.style.display = "none";
 
     switch (selectOpcao.value) {
         case "cadastrar-atleta":
             divNome.style.display = "block";
             divIdade.style.display = "block";
             divCpf.style.display = "block";
+            divNacionalidade.style.display = "block";
             inNome.value = "";
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
+            inNacionalidade.value = "";
             outSaida.textContent = "";
             table.textContent = "";
             inNome.focus();
@@ -45,10 +50,12 @@ function verificarOpcao() {
             divNome.style.display = "block";
             divIdade.style.display = "block";
             divCpf.style.display = "block";
+            divNacionalidade.style.display = "none";
             inNome.value = "";
             inIdade.value = "";
             inCpf.value = "";
             inCpfEditar.value = "";
+            inNacionalidade.value = "";
             outSaida.textContent = "";
             table.textContent = "";
             inCpfEditar.focus();
@@ -60,6 +67,7 @@ function verificarOpcao() {
             inCpf.value = "";
             inCpfEditar.value = "";
             outSaida.textContent = "";
+            inNacionalidade.value = "";
             table.textContent = "";
             inCpfEditar.focus();
             break;
@@ -89,7 +97,7 @@ function executarFuncaoAtleta() {
                 outSaida.textContent = "Por favor, insira uma idade válida.";
                 inIdade.focus();
             } else {
-                if (Atleta.cadastrarAtleta(inNome.value, inIdade.value, inCpf.value)) {
+                if (Atleta.cadastrarAtleta(inNome.value, inIdade.value, inCpf.value, inNacionalidade.value)) {
                     outSaida.style.color = "blue";
                     outSaida.textContent = "Cadastrado com sucesso!";
                 }
@@ -110,7 +118,7 @@ function executarFuncaoAtleta() {
                 inIdade.focus();
             }
             else {
-                if (Atleta.editarAtleta(inCpfEditar.value, inNome.value, inIdade.value, inCpf.value)) {
+                if (Atleta.editarAtleta(inCpfEditar.value, inNome.value, inIdade.value, inCpf.value, inNacionalidade.value)) {
                     outSaida.style.color = "blue";
                     outSaida.textContent = "Editado com sucesso!";
                 } else {

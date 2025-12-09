@@ -15,7 +15,6 @@ export function gerarID() {
                 maiorID = listaCompeticoes[i].idCompeticao;
             }
         }
-
         return maiorID + 1;
     }
 }
