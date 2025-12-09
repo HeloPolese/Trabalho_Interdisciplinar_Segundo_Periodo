@@ -1,6 +1,6 @@
-import { Maratona } from "../Maratona.js";
-import { CompeticaoTrilha } from "../CompeticaoTrilha.js";
-import { Atleta } from "../atletas.js";
+import { Maratona } from "../model/Maratona.js";
+import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
+import { Atleta } from "../model/atletas.js";
 
 export var listaCompeticoes = [];
 
@@ -64,21 +64,19 @@ export function editarCompeticao(idCompeticao, nome, data, local, distancia, lim
         return "Competição não encontrada!";
     }
 
-    if (nome !== undefined) competicao.nome = nome;
-    if (data !== undefined) competicao.data = data;
-    if (local !== undefined) competicao.local = local;
-    if (distancia !== undefined) competicao.distancia = distancia;
-    if (limiteParticipante !== undefined) competicao.limiteParticipante = limiteParticipante;
-    if (preco !== undefined) competicao.preco = preco;
-    if (limiteTempoMinutos !== undefined) competicao.limiteTempoMinutos = limiteTempoMinutos;
-    if (qtdCheckPoint !== undefined) competicao.qtdCheckPoint = qtdCheckPoint;
-    if (grauDificuldade !== undefined) competicao.grauDificuldade = grauDificuldade;
-    if (altimetria !== undefined) competicao.altimetria = altimetria;
+    if (nome !== undefined && nome == "") competicao.nome = nome;
+    if (data !== undefined && data == "") competicao.data = data;
+    if (local !== undefined && local == "") competicao.local = local;
+    if (distancia !== undefined && distancia == "") competicao.distancia = distancia;
+    if (limiteParticipante !== undefined && limiteParticipante == "") competicao.limiteParticipante = limiteParticipante;
+    if (preco !== undefined && preco == "") competicao.preco = preco;
+    if (limiteTempoMinutos !== undefined && limiteTempoMinutos == "") competicao.limiteTempoMinutos = limiteTempoMinutos;
+    if (qtdCheckPoint !== undefined && qtdCheckPoint == "") competicao.qtdCheckPoint = qtdCheckPoint;
+    if (grauDificuldade !== undefined && grauDificuldade == "") competicao.grauDificuldade = grauDificuldade;
+    if (altimetria !== undefined && altimetria == "") competicao.altimetria = altimetria;
 
     return true;
 }
-
-
 
 export function excluirCompeticao(idCompeticao) {
 

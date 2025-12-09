@@ -1,4 +1,4 @@
-import { Atleta } from "./Atleta.js";
+import { Atleta } from "./atletas.js";
 import { Competicao } from "./Competicao.js";
 
 export class Competidor {
