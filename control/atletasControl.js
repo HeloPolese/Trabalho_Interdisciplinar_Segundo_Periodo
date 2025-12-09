@@ -2,15 +2,6 @@ import { Atleta } from "../model/atletas.js";
 
 var vetAtletas = [];
 
-const salvo = localStorage.getItem("atletas");
-if (salvo) {
-    vetAtletas = JSON.parse(salvo);
-}
-
-function salvarStorage() {
-    localStorage.setItem("atletas", JSON.stringify(vetAtletas));
-}
-
 export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
     let objExiste = vetAtletas.find(obj => obj.cpf === cpf);
 
@@ -18,10 +9,7 @@ export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
         if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11 && nacionalidade != "") {
             let id = vetAtletas.length + 1;
             var objAtleta = new Atleta(id, nome, idade, cpf, nacionalidade);
-
             vetAtletas.push(objAtleta);
-            salvarStorage();
-
             return true;
         }
     }
@@ -32,15 +20,15 @@ export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf, novaNaciona
     let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
     let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf && obj.cpf != buscaCpf);
 
-    if (cpfRepetido) return false;
+    if (cpfRepetido) {
+        return false;
+    }
 
     if (buscaObj != undefined && novoNome != "" && novaIdade > 0 && novoCpf.length === 11 && novaNacionalidade != "") {
         buscaObj.nome = novoNome;
         buscaObj.idade = novaIdade;
         buscaObj.cpf = novoCpf;
         buscaObj.nacionalidade = novaNacionalidade;
-
-        salvarStorage();
         return true;
     }
     return false;
@@ -51,7 +39,6 @@ export function excluirAtleta(cpf) {
 
     if (indiceAtleta != -1) {
         vetAtletas.splice(indiceAtleta, 1);
-        salvarStorage();
         return true;
     }
     return false;
@@ -105,5 +92,6 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
 }
 
 export function buscarAtleta(cpf) {
-    return vetAtletas.find(obj => obj.cpf == cpf);
+    let atletaEncontrado = vetAtletas.find(obj => obj.cpf == cpf);
+    return atletaEncontrado;
 }

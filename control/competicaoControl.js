@@ -4,48 +4,6 @@ import { Atleta } from "../model/atletas.js";
 
 export var listaCompeticoes = [];
 
-const salvo = localStorage.getItem("competicoes");
-if (salvo) {
-    const bruto = JSON.parse(salvo);
-
-    bruto.forEach(c => {
-        if (c.altimetria !== undefined) {
-            listaCompeticoes.push(
-                new Maratona(
-                    c.nome,
-                    c.data,
-                    c.local,
-                    c.distancia,
-                    c.limiteParticipante,
-                    c.preco,
-                    c.limiteTempoMinutos,
-                    c.altimetria,
-                    c.idCompeticao
-                )
-            );
-        } else {
-            listaCompeticoes.push(
-                new CompeticaoTrilha(
-                    c.nome,
-                    c.data,
-                    c.local,
-                    c.distancia,
-                    c.limiteParticipante,
-                    c.preco,
-                    c.limiteTempoMinutos,
-                    c.qtdCheckPoint,
-                    c.grauDificuldade,
-                    c.idCompeticao
-                )
-            );
-        }
-    });
-}
-
-function salvarStorage() {
-    localStorage.setItem("competicoes", JSON.stringify(listaCompeticoes));
-}
-
 export function gerarID() {
     if (listaCompeticoes.length == 0) {
         return 1;
@@ -57,13 +15,24 @@ export function gerarID() {
                 maiorID = listaCompeticoes[i].idCompeticao;
             }
         }
+
         return maiorID + 1;
     }
 }
 
-export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint,
-    grauDificuldade, altimetria) {
-
+export function cadastrarCompeticao(
+    nomeModalidade,
+    nome,
+    data,
+    local,
+    distancia,
+    limiteParticipante,
+    preco,
+    limiteTempoMinutos,
+    qtdCheckPoint,
+    grauDificuldade,
+    altimetria
+) {
     let novoID = gerarID();
     let novaCompeticao;
 
@@ -93,13 +62,24 @@ export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia
             novoID
         );
     }
+
     listaCompeticoes.push(novaCompeticao);
-    salvarStorage();
     return true;
 }
 
-export function editarCompeticao(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint, grauDificuldade, altimetria) {
-
+export function editarCompeticao(
+    idCompeticao,
+    nome,
+    data,
+    local,
+    distancia,
+    limiteParticipante,
+    preco,
+    limiteTempoMinutos,
+    qtdCheckPoint,
+    grauDificuldade,
+    altimetria
+) {
     let competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
 
     if (!competicao) {
@@ -110,14 +90,13 @@ export function editarCompeticao(idCompeticao, nome, data, local, distancia, lim
     if (data !== undefined && data == "") competicao.data = data;
     if (local !== undefined && local == "") competicao.local = local;
     if (distancia !== undefined && distancia == "") competicao.distancia = distancia;
-    if (limiteParticipante !== undefined && limiteParticipante == "") competicao.limiteParticipante = limiteParticipante;
+    if (limiteParticipante !== undefined && limiteParticipante == "") competicao.limiteParticipante = limiteParticipiante;
     if (preco !== undefined && preco == "") competicao.preco = preco;
     if (limiteTempoMinutos !== undefined && limiteTempoMinutos == "") competicao.limiteTempoMinutos = limiteTempoMinutos;
     if (qtdCheckPoint !== undefined && qtdCheckPoint == "") competicao.qtdCheckPoint = qtdCheckPoint;
     if (grauDificuldade !== undefined && grauDificuldade == "") competicao.grauDificuldade = grauDificuldade;
     if (altimetria !== undefined && altimetria == "") competicao.altimetria = altimetria;
 
-    salvarStorage();
     return true;
 }
 
@@ -126,10 +105,10 @@ export function excluirCompeticao(idCompeticao) {
         if (listaCompeticoes[i].idCompeticao == idCompeticao) {
             let removida = listaCompeticoes[i];
             listaCompeticoes.splice(i, 1);
-            salvarStorage();
             return removida;
         }
     }
+
     return null;
 }
 
@@ -138,7 +117,6 @@ export function adicionarAtleta(idCompeticao, atletaNome) {
         for (let i = 0; i < listaCompeticoes.length; i++) {
             if (listaCompeticoes[i].idCompeticao == idCompeticao) {
                 listaCompeticoes[i].adicionarAtleta(atletaNome);
-                salvarStorage();
                 return true;
             }
         }
@@ -177,7 +155,6 @@ export function listarCompeticoesPorNome(listaCompeticoesFiltradas = listaCompet
             tbody.textContent = listaCompeticoesFiltradas[i].nome;
         }
     }
-
 }
 
 export function relatorioCompeticao(idCompeticao) {
@@ -188,18 +165,29 @@ export function relatorioCompeticao(idCompeticao) {
             var tbody = document.createElement('tbody');
 
             var cabecalhoLinha = document.createElement('tr');
-            var cabecalho = ['Nome', 'Data', 'Local', 'Distância (km)', 'Limite de Participantes', 'Preço (R$)', 'Tipo'];
+            var cabecalho = [
+                'Nome',
+                'Data',
+                'Local',
+                'Distância (km)',
+                'Limite de Participantes',
+                'Preço (R$)',
+                'Tipo'
+            ];
+
             cabecalho.forEach(cabecalhoTexto => {
                 var header = document.createElement('th');
                 header.textContent = cabecalhoTexto;
                 cabecalhoLinha.appendChild(header);
             });
+
             thead.appendChild(cabecalhoLinha);
             tabela.appendChild(thead);
 
             lstCompeticoesFiltradas.forEach(competicao => {
                 var linha = document.createElement('tr');
                 lstCompeticoesFiltradas.indexOf(competicao);
+
                 var celulas = [
                     competicao.nome,
                     competicao.data,
@@ -209,26 +197,27 @@ export function relatorioCompeticao(idCompeticao) {
                     competicao.preco,
                     (competicao instanceof Maratona) ? 'Maratona' : 'Trilha'
                 ];
+
                 celulas.forEach(celulaTexto => {
                     var celula = document.createElement('td');
                     celula.textContent = celulaTexto;
                     linha.appendChild(celula);
                 });
+
                 tbody.appendChild(linha);
             });
 
             tabela.appendChild(tbody);
-
             return tabela;
         }
     }
+
     return null;
 }
 
 export function excluirCompetidor(idCompeticao, cpfAtleta) {
     if (listaCompeticoes.length <= idCompeticao) {
         listaCompeticoes[idCompeticao.dataCompeticao].splice(cpfAtleta, 1);
-        salvarStorage();
         return true;
     } else {
         return false;
