@@ -1,10 +1,11 @@
 import { Competicao } from "../Competicao.js";
 import { Maratona } from "../Maratona.js";
 import { CompeticaoTrilha } from "../CompeticaoTrilha.js";
+import { Atleta } from "../atletas.js";
 
 var listaCompeticoes = [];
 
-function gerarID() {
+export function gerarID() {
     if (listaCompeticoes.length == 0) {
         return 0;
     } else {
@@ -72,7 +73,6 @@ export function editarCompeticao(id, dados) {
         return "Competição não encontrada!";
     }
 
-
     if (dados.nome !== undefined) {
         competicao.nome = dados.nome;
     }
@@ -119,7 +119,7 @@ export function editarCompeticao(id, dados) {
 }
 
 
-export function excluirCompeticao(id){
+export function excluirCompeticao(id) {
 
     for (let i = 0; i < listaCompeticoes.length; i++) {
         if (listaCompeticoes[i].idCompeticao == id) {
@@ -133,3 +133,107 @@ export function excluirCompeticao(id){
 
 }
 
+export function adicionarAtleta(idCompeticao, atletaNome) {
+    if (atletaNome != undefined && atletaNome instanceof Atleta) {
+        for (let i = 0; i < listaCompeticoes.length; i++) {
+            if (listaCompeticoes[i].idCompeticao == idCompeticao) {
+                listaCompeticoes[i].adicionarAtleta(atletaNome);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+export function listarCompetidores(nomeCompeticao, data, local) {
+    if (nomeCompeticao instanceof Competicao) {
+        for (let i = 0; i < listaCompeticoes.length; i++) {
+            if (nomeCompeticao[i].data == data) {
+                if (nomeCompeticao[i].local == local) {
+                    return nomeCompeticao[i].listarCompetidores();
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
+    } else {
+        return null;
+    }
+}
+
+export function listarCompeticoesPorNome(listaCompeticoesFiltradas = listaCompeticoes) {
+    if (listaCompeticoesFiltradas.length != 0) {
+        var tabela = document.createElement('table');
+        thead.textContent = "Nome da Competição";
+        thead = document.createElement('thead');
+        tabela.appendChild(thead);
+        tabela.appendChild(tbody);
+
+        for (let i = 0; i < listaCompeticoesFiltradas.length; i++) {
+            tbody = document.createElement('tbody');
+            tbody.textContent = listaCompeticoesFiltradas[i].nome;
+        }
+    }
+
+}
+
+export function relatorioCompeticao(idCompeticao) {
+    for (let i = 0; i < listaCompeticoes.length; i++) {
+        if (listaCompeticoes[i].idCompeticao == idCompeticao) {
+            var tabela = document.createElement('table');
+            var thead = document.createElement('thead');
+            var tbody = document.createElement('tbody');
+
+            var cabecalhoLinha = document.createElement('tr');
+            var cabecalho = ['Nome', 'Data', 'Local', 'Distância (km)', 'Limite de Participantes', 'Preço (R$)', 'Tipo'];
+            cabecalho.forEach(cabecalhoTexto => {
+                var header = document.createElement('th');
+                header.textContent = cabecalhoTexto;
+                cabecalhoLinha.appendChild(header);
+            });
+            thead.appendChild(cabecalhoLinha);
+            tabela.appendChild(thead);
+
+
+            lstCompeticoesFiltradas.forEach(competicao => {
+                var linha = document.createElement('tr');
+                lstCompeticoesFiltradas.indexOf(competicao);
+                var celulas = [
+                    competicao.nome,
+                    competicao.data,
+                    competicao.local,
+                    competicao.distancia,
+                    competicao.limiteParticipante,
+                    competicao.preco,
+                    (competicao instanceof Maratona) ? 'Maratona' : 'Trilha'
+                ];
+                celulas.forEach(celulaTexto => {
+                    var celula = document.createElement('td');
+                    celula.textContent = celulaTexto;
+                    linha.appendChild(celula);
+                });
+                tbody.appendChild(linha);
+            });
+
+            tabela.appendChild(tbody);
+
+            return tabela;
+        }
+    }
+    return null;
+}
+
+
+
+export function excluirCompetidor(idCompeticao, cpfAtleta) {
+    if (listaCompeticoes.length <= idCompeticao) {
+        listaCompeticoes[idCompeticao.dataCompeticao].splice(cpfAtleta, 1);
+        return true;
+    } else {
+        return false;
+    }
+
+
+}

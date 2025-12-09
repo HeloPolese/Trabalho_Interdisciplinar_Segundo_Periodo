@@ -1,26 +1,25 @@
-import Atleta from "./Atleta.js";
-import Competicao from "./Competicao.js";
+import { Atleta } from "./Atleta.js";
+import { Competicao } from "./Competicao.js";
 
-export class Competidor extends Atleta {
-    #posicao;
-    #refCompeticao;
+export class Competidor {
+
     #refAtleta;
     #tempoMinutos;
+    #posicao
 
-    constructor(nome, idade = "", cpf, refCompeticao, refAtleta, tempoMinutos = null, posicao) {
-        super(nome, idade, cpf);
-        this.posicao = posicao;
-        this.refCompeticao = refCompeticao;
-        this.refAtleta = refAtleta;
+    constructor(refAtleta, tempoMinutos = null, posicao = -1) {
+        if (refAtleta instanceof Atleta) {
+            this.#refAtleta = refAtleta.idAtleta;
+        } else {
+            this.#refAtleta = undefined;
+        }
+        this.#posicao = posicao;
         this.#tempoMinutos = tempoMinutos;
     }
 
-    get posicao() {
+    get posicao() { 
         return this.#posicao;
-    }
-    get refCompeticao() {
-        return this.#refCompeticao;
-    }
+    }  
     get refAtleta() {
         return this.#refAtleta;
     }
@@ -31,27 +30,24 @@ export class Competidor extends Atleta {
         if (novoTempoMinutos != undefined && novoTempoMinutos >= 0) {
             this.#tempoMinutos = novoTempoMinutos;
         }
-    }
-    set refCompeticao(competicao) {
-        if (competicao != undefined && competicao instanceof Competicao) {
-            this.#refCompeticao = competicao;
-        }
-    }
+    }   
 
-    set refAtleta(atleta) {
-        if (atleta != undefined && atleta instanceof Atleta) {
+    set refAtleta(atleta){
+        if(atleta != undefined && atleta instanceof Atleta){
             this.#refAtleta = atleta;
-        }
-    }
-    set posicao(novaPosicao) {
-        if (novaPosicao != undefined && novaPosicao > 0 && novaPosicao <= Competicao.limiteParticipante) {
+        }   
+    }  
+    set posicao(novaPosicao){
+        if(novaPosicao != undefined && novaPosicao > 0 && novaPosicao < Competicao.limiteParticipante){
             this.#posicao = novaPosicao;
-        }
+        }   
     }
 
-    toString() {
-        return super.toString() +
-            `\nPosição: ${this.posicao}` +
-            `\nTempo em minutos: ${this.tempoMinutos}`;
+    toString(){
+        return  '\n Nome' + this.#refAtleta.nome +
+                '\n cpf: ' + this.#refAtleta.cpf +
+                '\n Idade: ' + this.#refAtleta.idade +
+                `\n Posição: ${this.posicao}` +
+                `\n Tempo em minutos: ${this.tempoMinutos}`;
     }
 }
