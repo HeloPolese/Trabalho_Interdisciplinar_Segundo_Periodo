@@ -55,7 +55,8 @@ export class Atleta{
     toString(){
         return "Nome: " + this.#nome + 
                "\nIdade: " + this.#idade +
-               "\nCpf: " + this.#cpf;
+               "\nCpf: " + this.#cpf +
+               "\nNacionalidade: " + this.#nacionalidade;
     }
 
 }
