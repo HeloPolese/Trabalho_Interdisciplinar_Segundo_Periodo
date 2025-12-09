@@ -19,12 +19,12 @@ function gerarID() {
     }
 }
 
-export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos,qtdCheckPoint,
-                                    grauDificuldade, altimetria) {
+export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint,
+    grauDificuldade, altimetria) {
 
     let novoID = gerarID();
     let novaCompeticao;
-    
+
     if (nomeModalidade == "TRILHA") {
         novaCompeticao = new CompeticaoTrilha(
             nome,
@@ -80,7 +80,7 @@ export function editarCompeticao(idCompeticao, nome, data, local, distancia, lim
 
 
 
-export function excluirCompeticao(idCompeticao){
+export function excluirCompeticao(idCompeticao) {
 
     for (let i = 0; i < listaCompeticoes.length; i++) {
         if (listaCompeticoes[i].idCompeticao == idCompeticao) {

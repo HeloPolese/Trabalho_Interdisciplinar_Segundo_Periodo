@@ -4,7 +4,7 @@ export class CompeticaoTrilha extends Competicao {
     #qtdCheckPoint;
     #grauDificuldade;
 
-    constructor(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint, grauDificuldade = "FÁCIL"){
+    constructor(nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint, grauDificuldade = "FÁCIL", idCompeticao){
         super(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos)
         this.qtdCheckPoint = qtdCheckPoint;
         this.grauDificuldade = grauDificuldade;
@@ -28,7 +28,7 @@ export class CompeticaoTrilha extends Competicao {
     set grauDificuldade(novoGrauDificuldade){
     if (novoGrauDificuldade != ""){
         const dificuldade = novoGrauDificuldade.toUpperCase();
-        const niveisValidos = ["FÁCIL", "MÉDIO", "DIFÍCIL"];
+        const niveisValidos = ["FÁCIL", "MÉDIO", "DIFÍCIL", "FACIL", "MEDIO", "DIFICIL"];
 
         if (niveisValidos.includes(dificuldade)) {
             this.#grauDificuldade = dificuldade;

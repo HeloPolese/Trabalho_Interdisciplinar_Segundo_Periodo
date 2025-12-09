@@ -224,7 +224,7 @@ function verificarModalidade() {
     }
 }
 function executarFuncaoCorrida() {
-    
+
     let opcao = selectOpcaoCorrida.value;
     outSaida.textContent = "";
     table.textContent = "";
@@ -256,14 +256,24 @@ function executarFuncaoCorrida() {
             }
             break;
         case "editar-competicao":
-            if (inNomeCorrida.value == "" || inDataCorrida.value == "") {
+            if (inBuscarId.value == "") {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Por favor, preencha todos os campos para editar a competição.";
                 inNomeCorrida.focus();
             }
-            else if (competicaoController.editarCompeticao(inNomeCorrida.value, inDataCorrida.value)) {
+            else if (competicaoController.editarCompeticao(inBuscarId.value, inNomeCorrida.value, inDataCorrida.value, inLocal.value, inDistancia.value, inLimiteParti.value, inPreco.value, inLimiteTempo.value, inCheckPoint.value, inGrauDificuldade.value, inAltimetria.value)) {
                 outSaida.style.color = "green";
                 outSaida.textContent = "Competição editada com sucesso!";
+                inNomeCorrida.value = "";
+                inDataCorrida.value = "";
+                inLocal.value = "";
+                inDistancia.value = "";
+                inCheckPoint.value = "";
+                inGrauDificuldade.value = "";
+                inAltimetria.value = "";
+                inLimiteParti.value = "";
+                inPreco.value = "";
+                inLimiteTempo.value = "";
             }
             break;
             case "excluir-competicao":
@@ -272,9 +282,19 @@ function executarFuncaoCorrida() {
                 outSaida.textContent = "Por favor, insira o ID da competição para excluir.";
                 inBuscarId.focus();
             }
-            else if (competicaoController.excluirCompeticao(parseInt(inBuscarId.value))) {
+            else if (competicaoController.excluirCompeticao(inBuscarId.value)){
                 outSaida.style.color = "green";
                 outSaida.textContent = "Competição excluída com sucesso!";
+                inNomeCorrida.value = "";
+                inDataCorrida.value = "";
+                inLocal.value = "";
+                inDistancia.value = "";
+                inCheckPoint.value = "";
+                inGrauDificuldade.value = "";
+                inAltimetria.value = "";
+                inLimiteParti.value = "";
+                inPreco.value = "";
+                inLimiteTempo.value = "";
             }
             else {
                 outSaida.style.color = "red";
