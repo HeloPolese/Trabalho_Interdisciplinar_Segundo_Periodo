@@ -73,7 +73,7 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
         thead.appendChild(document.createElement("th")).textContent = "Nome";
         thead.appendChild(document.createElement("th")).textContent = "Idade";
         thead.appendChild(document.createElement("th")).textContent = "CPF";
-        thead.appendChild=document.createElement("th")).textContent = "Nacionalidade";
+        thead.appendChild(document.createElement("th")).textContent = "Nacionalidade";
 
         table.appendChild(thead);
 
