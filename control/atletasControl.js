@@ -1,37 +1,55 @@
-import { Atleta } from "../model/atletas.js";
+import { Atleta } from "../atletas.js";
 
-export var vetAtletas = [];
+var vetAtletas = [];
+let idAtletaCounter = 1;
 
-export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
+export function cadastrarAtleta(nome, idade, cpf, nacionalidade = "Brasil") {
     let objExiste = vetAtletas.find(obj => obj.cpf === cpf);
     if (objExiste === undefined) {
-        if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11 && nacionalidade != "") {
-            let id = vetAtletas.length + 1;
-            var objAtleta = new Atleta(id, nome, idade, cpf, nacionalidade);
+        if (nome != undefined && idade != undefined && idade > 0 && cpf && cpf.length == 11) {
+            let id = idAtletaCounter++;
+            var objAtleta = new Atleta(id, nome, parseInt(idade), cpf, nacionalidade);
             vetAtletas.push(objAtleta);
             return true;
         }
     }
     return false;
 }
-export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf, novaNacionalidade) {
-    let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
-    let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf && obj.cpf != buscaCpf);
 
-    if (cpfRepetido) {
+export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf, novaNacionalidade = "Brasil") {
+    let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
+    
+    if (!buscaObj) {
         return false;
     }
-
-    if (buscaObj != undefined && novoNome != "" && novaIdade > 0 && novoCpf.length === 11 && novaNacionalidade != "") {
-        buscaObj.nome = novoNome;
-        buscaObj.idade = novaIdade;
-        buscaObj.cpf = novoCpf;
-        buscaObj.nacionalidade = novaNacionalidade;
-        return true;
+    
+    // Verificar se novo CPF já existe (apenas se for diferente)
+    if (novoCpf && novoCpf !== buscaCpf) {
+        let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf);
+        if (cpfRepetido) {
+            return false;
+        }
     }
-    return false;
+    
+    // Aplicar mudanças apenas se os valores forem válidos
+    if (novoNome && novoNome !== "") {
+        buscaObj.nome = novoNome;
+    }
+    
+    if (novaIdade && novaIdade > 0) {
+        buscaObj.idade = parseInt(novaIdade);
+    }
+    
+    if (novoCpf && novoCpf.length === 11) {
+        buscaObj.cpf = novoCpf;
+    }
+    
+    if (novaNacionalidade && novaNacionalidade !== "") {
+        buscaObj.nacionalidade = novaNacionalidade;
+    }
+    
+    return true;
 }
-
 
 export function excluirAtleta(cpf) {
     let indiceAtleta = vetAtletas.findIndex(obj => obj.cpf == cpf);
@@ -49,35 +67,48 @@ export function listarAtletas() {
     return null;
 }
 
+export function buscarAtleta(cpf) {
+    let atletaEncontrado = vetAtletas.find(obj => obj.cpf == cpf);  
+    return atletaEncontrado;
+}
 
-export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
+export function getVetAtletas() {
+    return vetAtletas;
+}
 
+function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
     if (vetAtletasFiltrados.length > 0) {
-
         let table = document.createElement("table");
         let thead = document.createElement("thead");
         let tbody = document.createElement("tbody");
 
-        thead.appendChild(document.createElement("th")).textContent = "Nome";
-        thead.appendChild(document.createElement("th")).textContent = "Idade";
-        thead.appendChild(document.createElement("th")).textContent = "CPF";
-        thead.appendChild(document.createElement("th")).textContent = "Nacionalidade";
-
+        // Cabeçalho
+        let cabecalho = document.createElement("tr");
+        ["ID", "Nome", "Idade", "CPF", "Nacionalidade"].forEach(coluna => {
+            let th = document.createElement("th");
+            th.textContent = coluna;
+            cabecalho.appendChild(th);
+        });
+        thead.appendChild(cabecalho);
         table.appendChild(thead);
 
-        for (let lin = 0; lin < vetAtletasFiltrados.length; lin++) {
+        // Linhas
+        for (let i = 0; i < vetAtletasFiltrados.length; i++) {
             let linha = document.createElement("tr");
-
+            
+            let tdId = document.createElement("td");
             let tdNome = document.createElement("td");
             let tdIdade = document.createElement("td");
             let tdCPF = document.createElement("td");
             let tdNacionalidade = document.createElement("td");
 
-            tdNome.textContent = vetAtletasFiltrados[lin].nome;
-            tdIdade.textContent = vetAtletasFiltrados[lin].idade;
-            tdCPF.textContent = vetAtletasFiltrados[lin].cpf;
-            tdNacionalidade.textContent = vetAtletasFiltrados[lin].nacionalidade;
+            tdId.textContent = vetAtletasFiltrados[i].idAtleta;
+            tdNome.textContent = vetAtletasFiltrados[i].nome;
+            tdIdade.textContent = vetAtletasFiltrados[i].idade;
+            tdCPF.textContent = vetAtletasFiltrados[i].cpf;
+            tdNacionalidade.textContent = vetAtletasFiltrados[i].nacionalidade;
 
+            linha.appendChild(tdId);
             linha.appendChild(tdNome);
             linha.appendChild(tdIdade);
             linha.appendChild(tdCPF);
@@ -87,13 +118,7 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
         }
 
         table.appendChild(tbody);
-
         return table;
     }
     return null;
-}
-
-export function buscarAtleta(cpf) {
-    let atletaEncontrado = vetAtletas.find(obj => obj.cpf == cpf);  
-    return atletaEncontrado;
 }

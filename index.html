@@ -6,18 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="base.css">
     <title>RunBase: Gerenciamento de corridas online</title>
+    <style>
+        /* SÓ ISSO - remove todo o resto */
+        .pagina {
+            display: none;
+        }
+        
+        .pagina.ativa {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="home">
+    <!-- Página Home -->
+    <div id="home" class="pagina ativa">
         <header class="cabecalho">
             <img src="./imagens/logo1.png" alt="logo do site" class="logo">
             <div class="container-links">
-                <a class = "link" href="#home">Home</a>
-                <a class = "link" href="#competicao">Corridas</a>
-                <a class = "link" href="#atleta">Atletas</a>
+                <a class="link" onclick="mostrarPagina('home')">Home</a>
+                <a class="link" onclick="mostrarPagina('competicao')">Corridas</a>
+                <a class="link" onclick="mostrarPagina('atleta')">Atletas</a>
             </div>
-
         </header>
         <main>
             <div class="home-text">
@@ -29,9 +41,7 @@
             <div class="container-banner">
                 <img src="./imagens/banner.png" alt="imagem banner" class="banner">
             </div>
-
         </main>
-
         <footer>
             <div class="container-footer">
                 <p>Brasil</p>
@@ -40,13 +50,14 @@
         </footer>
     </div>
 
-    <div id="competicao">
+    <!-- Página Competições -->
+    <div id="competicao" class="pagina">
         <header class="cabecalho">
             <img src="./imagens/logo1.png" alt="logo do site" class="logo">
             <div class="container-links">
-                <a href="#home" class="link">Home</a>
-                <a href="#competicao" class="link">Corridas</a>
-                <a href="#atleta" class="link">Atletas</a>
+                <a class="link" onclick="mostrarPagina('home')">Home</a>
+                <a class="link" onclick="mostrarPagina('competicao')">Corridas</a>
+                <a class="link" onclick="mostrarPagina('atleta')">Atletas</a>
             </div>
         </header>
         <main>
@@ -129,7 +140,7 @@
                         placeholder="Insira o grau de dificuldade (ex: Facil, medio, dificil)">
                 </div>
                 <p> <input type="button" id="btOkCorrida" value="Executar"> </p>
-                 <p id="outSaidaCorrida"></p>
+                <p id="outSaidaCorrida"></p>
                 <section id="tableCorrida"></section>
             </div>
         </main>
@@ -139,16 +150,16 @@
                 <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
             </div>
         </footer>
-        <script type="module" src="./views/functionsViewsCorridas.js"></script>
     </div>
 
-    <div id="atleta">
+    <!-- Página Atletas -->
+    <div id="atleta" class="pagina">
         <header class="cabecalho">
             <img src="./imagens/logo1.png" alt="logo do site" class="logo">
             <div class="container-links">
-                <a href="#home" class="link">Home</a>
-                <a href="#competicao" class="link">Corridas</a>
-                <a href="#atleta" class="link">Atletas</a>
+                <a class="link" onclick="mostrarPagina('home')">Home</a>
+                <a class="link" onclick="mostrarPagina('competicao')">Corridas</a>
+                <a class="link" onclick="mostrarPagina('atleta')">Atletas</a>
             </div>
         </header>
         <main>
@@ -189,26 +200,78 @@
                 <div id="divCpf">
                     <label for="inCpf">CPF do Atleta: </label><input type="text" id="inCpf" placeholder="CPF...">
                 </div>
-            <div id="divNacionalidade">
-                <label for="inNacionalidade">Nacionalidade do Atleta: </label><input type="text" id="inNacionalidade"
-                    placeholder="Nacionalidade...">
+                <div id="divNacionalidade">
+                    <label for="inNacionalidade">Nacionalidade do Atleta: </label><input type="text"
+                        id="inNacionalidade" placeholder="Nacionalidade...">
+                </div>
+                <p> <input type="button" id="btOk" value="Executar"> </p>
+                <p id="outSaida"></p>
+                <section id="table"></section>
             </div>
-            <p> <input type="button" id="btOk" value="Executar"> </p>
-            <p id="outSaida"></p>
-            <section id="table"></section>
+        </main>
+        <footer>
+            <div class="container-footer">
+                <p>Brasil</p>
+                <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
+            </div>
+        </footer>
     </div>
-    </main>
-    <footer>
-        <div class="container-footer">
-            <p>Brasil</p>
-            <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
-        </div>
-    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Função simples para navegação
+        function mostrarPagina(id) {
+            // Esconder todas as páginas
+            document.querySelectorAll('.pagina').forEach(pagina => {
+                pagina.classList.remove('ativa');
+            });
+
+            // Mostrar a página selecionada
+            const paginaSelecionada = document.getElementById(id);
+            if (paginaSelecionada) {
+                paginaSelecionada.classList.add('ativa');
+            }
+        }
+    </script>
+
+    <script>
+        // Controle de navegação simples
+        function mostrarPagina(idPagina) {
+            console.log("Mostrando página:", idPagina);
+
+            // 1. Esconder todas as páginas
+            document.querySelectorAll('.pagina').forEach(pagina => {
+                pagina.classList.remove('ativa');
+            });
+
+            // 2. Mostrar a página selecionada
+            const paginaSelecionada = document.getElementById(idPagina);
+            if (paginaSelecionada) {
+                paginaSelecionada.classList.add('ativa');
+
+                // 3. Disparar eventos para inicializar os campos
+                setTimeout(() => {
+                    if (idPagina === 'atleta' && document.getElementById('selectOpcao')) {
+                        const evento = new Event('change');
+                        document.getElementById('selectOpcao').dispatchEvent(evento);
+                    }
+                    if (idPagina === 'competicao' && document.getElementById('selectOpcaoCorrida')) {
+                        const evento = new Event('change');
+                        document.getElementById('selectOpcaoCorrida').dispatchEvent(evento);
+                    }
+                }, 100);
+            }
+        }
+
+        // Inicializar com a home
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarPagina('home');
+        });
+    </script>
+
+    <!-- Importar módulos JavaScript -->
     <script type="module" src="/views/functionsViews.js"></script>
     <script type="module" src="/views/functionsViewsCorridas.js"></script>
-    </div>
-
-
 </body>
 
 </html>
