@@ -1,4 +1,4 @@
-import { Atleta } from "../atletas.js";
+import { Atleta } from "../model/atletas.js";
 
 var vetAtletas = [];
 
