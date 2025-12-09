@@ -17,7 +17,7 @@ export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
 export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf, novaNacionalidade) {
     let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
     let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf && obj.cpf != buscaCpf);
-
+    
     if (cpfRepetido) {
         return false;
     }

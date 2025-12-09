@@ -117,21 +117,8 @@ function verificarOpcaoCorridas() {
             inPreco.value = "";
             inLimiteTempo.value = "";
             break;
-        case "listar-competicao":
-            inNomeCorrida.value = "";
-            inDataCorrida.value = "";
-            inLocal.value = "";
-            inDistancia.value = "";
-            inCheckPoint.value = "";
-            inGrauDificuldade.value = "";
-            inAltimetria.value = "";
-            inLimiteParti.value = "";
-            inPreco.value = "";
-            inLimiteTempo.value = "";
-            break;
         case "adicionar-atleta-competicao":
             divCpfAtletas.style.display = "block";
-            divSelection.style.display = "block";
             divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
@@ -299,6 +286,21 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.textContent = "Erro ao excluir a competição. Verifique o ID e tente novamente.";
             }
             break;
+            case"adicionar-atleta-competicao":
+            if(inBuscarId.value == "" || inCpfAtleta.value == ""){
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Por favor, preencha todos os campos.";
+                inBuscarId.focus();
+            }
+            else if(competicaoController.adicionarAtleta(inBuscarId.value, inCpfAtleta.value)){
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Adicionado com sucesso!";
+            }
+            else{
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Erro!";
+                inBuscarId.focus();
+            }
     }
 }
 

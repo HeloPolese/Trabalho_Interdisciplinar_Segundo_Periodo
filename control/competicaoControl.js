@@ -94,7 +94,7 @@ export function excluirCompeticao(idCompeticao) {
 }
 
 export function adicionarAtleta(idCompeticao, atletaNome) {
-    if (atletaNome != undefined && atletaNome instanceof Atleta) {
+    if (atletaNome !== undefined && atletaNome instanceof Atleta){
         for (let i = 0; i < listaCompeticoes.length; i++) {
             if (listaCompeticoes[i].idCompeticao == idCompeticao) {
                 listaCompeticoes[i].adicionarAtleta(atletaNome);
