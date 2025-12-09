@@ -299,6 +299,18 @@ function executarFuncaoCorrida() {
                 outSaida.textContent = "Erro ao excluir a competição. Verifique o ID e tente novamente.";
             }
             break;
+            case "adicionar-atleta-competicao":
+                if(inBuscarId.value == "" || inCpfAtleta.value == ""){
+                    outSaida.style.color = "red";
+                    outSaida.textContent = "Campos com valor inválido!";
+                }
+                else if(competicaoController.adicionarAtleta(inBuscarId.value, inCpfAtleta.value)){
+                    outSaida.style.color = "green";
+                    outSaida.textContent = "Adicionado com sucesso!";
+                }else{
+                    outSaida.style.color = "red";
+                    outSaida.textContent = "Erro!";
+                }
     }
 }
 
