@@ -88,7 +88,7 @@ function executarFuncaoAtleta() {
 
     switch (opcao) {
         case "cadastrar-atleta":
-            if (inNome.value == "" || inIdade.value == "" || inCpf.value == "" || !isNaN(inNome.value)) {
+            if (inNome.value == "" || inIdade.value == "" || inCpf.value == "" || !isNaN(inNome.value) || inNacionalidade.value == "") {
                 outSaida.style.color = "red";
                 outSaida.textContent = "Por favor, preencha todos os campos com valor valido.";
                 inNome.focus();
