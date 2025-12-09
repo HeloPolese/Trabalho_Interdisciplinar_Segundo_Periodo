@@ -185,6 +185,20 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            break;
+        case "listar-competidores-competicao":
+            divBuscarId.style.display = "block";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
+            break;
     }
 }
 

@@ -109,7 +109,7 @@ export function adicionarAtletaAcompeticao(idCompeticao, cpfAtleta) {
         return false;
     }
     competicao.adicionarAtleta(atletaEncontrado);
-    console.log("Competidores da competição:", competicao.lstCompetidores);
+    //console.log("Competidores da competição:", competicao.lstCompetidores);
     return true;
 }
 
@@ -122,7 +122,7 @@ export function listarCompetidores(idCompeticao) {
     return competicao.lstCompetidores;
 }
 
-export function listarCompeticoesPorNome(listaCompeticoesFiltradas = listaCompeticoes) {
+export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) {
     if (listaCompeticoesFiltradas.length != 0) {
         var tabela = document.createElement('table');
         thead.textContent = "Nome da Competição";
