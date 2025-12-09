@@ -37,7 +37,7 @@ selectOpcaoCorrida.addEventListener("change", verificarOpcaoCorridas);
 btOkCorrida.addEventListener("click", executarFuncaoCorrida);
 
 btOkCorrida.addEventListener("click", () => {
-  selectModalidade.value = "Selecione-Uma-Opção";
+    selectModalidade.value = "Selecione-Uma-Opção";
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -132,9 +132,7 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "listar-competidores-corrida":
-            divNomeCorrida.style.display = "block";
-            divData.style.display = "block";
-            divLocal.style.display = "block";
+            divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -261,13 +259,13 @@ function executarFuncaoCorrida() {
                 inLimiteTempo.value = "";
             }
             break;
-            case "excluir-competicao":
+        case "excluir-competicao":
             if (inBuscarId.value == "") {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Por favor, insira o ID da competição para excluir.";
                 inBuscarId.focus();
             }
-            else if (competicaoController.excluirCompeticao(inBuscarId.value)){
+            else if (competicaoController.excluirCompeticao(inBuscarId.value)) {
                 outSaidaCorrida.style.color = "green";
                 outSaidaCorrida.textContent = "Competição excluída com sucesso!";
                 inNomeCorrida.value = "";
@@ -286,20 +284,28 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.textContent = "Erro ao excluir a competição. Verifique o ID e tente novamente.";
             }
             break;
-            case"adicionar-atleta-competicao":
-            if(inBuscarId.value == "" || inCpfAtleta.value == ""){
+        case "adicionar-atleta-competicao":
+            if (inBuscarId.value == "" || inCpfAtleta.value == "") {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Por favor, preencha todos os campos.";
                 inBuscarId.focus();
             }
-            else if(competicaoController.adicionarAtleta(inBuscarId.value, inCpfAtleta.value)){
+            else if (competicaoController.adicionarAtletaAcompeticao(inBuscarId.value, inCpfAtleta.value)) {
                 outSaidaCorrida.style.color = "green";
                 outSaidaCorrida.textContent = "Adicionado com sucesso!";
             }
-            else{
+            else {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Erro!";
                 inBuscarId.focus();
+            }
+            break;
+        case "listar-competidores-competicao":
+            if (inBuscarId.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
+                outSaidaCorrida = competicaoController.listarCompetidores();
             }
     }
 }
