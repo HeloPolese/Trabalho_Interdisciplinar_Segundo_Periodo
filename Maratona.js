@@ -3,7 +3,7 @@ import { Competicao } from "./Competicao.js";
 export class Maratona extends Competicao {
     #altimetria;
 
-    constructor(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, altimetria){
+    constructor(nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, altimetria, idCompeticao){
         super(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos);
         this.altimetria = altimetria;
     }

@@ -29,7 +29,6 @@ function verificarOpcao() {
 
     switch (selectOpcao.value) {
         case "cadastrar-atleta":
-            divCpfPes.style.display = "none";
             divNome.style.display = "block";
             divIdade.style.display = "block";
             divCpf.style.display = "block";
@@ -56,9 +55,6 @@ function verificarOpcao() {
             break;
         case "excluir-atleta":
             divCpfPes.style.display = "block";
-            divNome.style.display = "none";
-            divIdade.style.display = "none";
-            divCpf.style.display = "none";
             inNome.value = "";
             inIdade.value = "";
             inCpf.value = "";

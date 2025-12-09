@@ -3,12 +3,14 @@ export class Atleta{
     #nome;
     #idade;
     #cpf;
+    #nacionalidade;
 
-    constructor(id,nome,idade = 0,cpf){
+    constructor(id,nome,idade = 0,cpf, nacionalidade){
         this.#nome = nome;  
         this.#idade = idade;
         this.#cpf = cpf;
         this.#idAtleta = id;
+        this.#nacionalidade = nacionalidade;
     }
     get idAtleta(){
         return this.#idAtleta;
@@ -42,7 +44,14 @@ export class Atleta{
             this.#cpf = newCpf;
         }
     }
-
+        get nacionalidade(){
+            return this.#nacionalidade;
+        }
+        set nacionalidade(newNacionalidade){
+            if (newNacionalidade != "" && newNacionalidade != undefined ) {
+                this.#nacionalidade = newNacionalidade;
+            }
+        }
     toString(){
         return "Nome: " + this.#nome + 
                "\nIdade: " + this.#idade +
