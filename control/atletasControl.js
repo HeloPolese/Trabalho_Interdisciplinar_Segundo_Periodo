@@ -2,31 +2,31 @@ import { Atleta } from "../atletas.js";
 
 var vetAtletas = [];
 
-export function cadastrarAtleta(nome, idade, cpf) {
+export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
     let objExiste = vetAtletas.find(obj => obj.cpf === cpf);
     if (objExiste === undefined) {
-        if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11) {
+        if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11 && nacionalidade != "") {
             let id = vetAtletas.length + 1;
-            var objAtleta = new Atleta(id, nome, idade, cpf);
+            var objAtleta = new Atleta(id, nome, idade, cpf, nacionalidade);
             vetAtletas.push(objAtleta);
             return true;
         }
     }
     return false;
 }
-export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf) {
+export function editarAtleta(buscaCpf, novoNome, novaIdade, novoCpf, novaNacionalidade) {
     let buscaObj = vetAtletas.find(obj => obj.cpf == buscaCpf);
-
-    let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf); // verifica se ele nao vai cadastrar um cpf repetido
+    let cpfRepetido = vetAtletas.find(obj => obj.cpf == novoCpf && obj.cpf != buscaCpf);
 
     if (cpfRepetido) {
         return false;
     }
 
-    if (buscaObj != undefined && novoNome != "" && novaIdade > 0 && novoCpf.length === 11) {
+    if (buscaObj != undefined && novoNome != "" && novaIdade > 0 && novoCpf.length === 11 && novaNacionalidade != "") {
         buscaObj.nome = novoNome;
         buscaObj.idade = novaIdade;
         buscaObj.cpf = novoCpf;
+        buscaObj.nacionalidade = novaNacionalidade;
         return true;
     }
     return false;
@@ -46,6 +46,7 @@ export function listarAtletas() {
     if (vetAtletas.length > 0) {
         return gerarTabelaAtletas(vetAtletas);
     }
+    return null;
 }
 
 
@@ -60,6 +61,7 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
         thead.appendChild(document.createElement("th")).textContent = "Nome";
         thead.appendChild(document.createElement("th")).textContent = "Idade";
         thead.appendChild(document.createElement("th")).textContent = "CPF";
+        thead.appendChild(document.createElement("th")).textContent = "Nacionalidade";
 
         table.appendChild(thead);
 
@@ -69,14 +71,17 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
             let tdNome = document.createElement("td");
             let tdIdade = document.createElement("td");
             let tdCPF = document.createElement("td");
+            let tdNacionalidade = document.createElement("td");
 
             tdNome.textContent = vetAtletasFiltrados[lin].nome;
             tdIdade.textContent = vetAtletasFiltrados[lin].idade;
             tdCPF.textContent = vetAtletasFiltrados[lin].cpf;
+            tdNacionalidade.textContent = vetAtletasFiltrados[lin].nacionalidade;
 
             linha.appendChild(tdNome);
             linha.appendChild(tdIdade);
             linha.appendChild(tdCPF);
+            linha.appendChild(tdNacionalidade);
 
             tbody.appendChild(linha);
         }
