@@ -4,7 +4,6 @@ import { Atleta } from "../model/atletas.js";
 import { vetAtletas } from "../control/atletasControl.js";
 
 export var listaCompeticoes = [];
-export var listaCompetidor = [];
 
 export function gerarID() {
     if (listaCompeticoes.length == 0) {
