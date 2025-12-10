@@ -6,8 +6,7 @@ export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
     let objExiste = vetAtletas.find(obj => obj.cpf === cpf);
     if (objExiste === undefined) {
         if (nome != undefined && idade != undefined && idade > 0 && cpf.length == 11 && nacionalidade != "") {
-            let id = vetAtletas.length + 1;
-            var objAtleta = new Atleta(id, nome, idade, cpf, nacionalidade);
+            var objAtleta = new Atleta( nome, idade, cpf, nacionalidade);
             vetAtletas.push(objAtleta);
             return true;
         }
@@ -58,6 +57,7 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
         let thead = document.createElement("thead");
         let tbody = document.createElement("tbody");
 
+        thead.appendChild(document.createElement("th")).textContent = "id";
         thead.appendChild(document.createElement("th")).textContent = "Nome";
         thead.appendChild(document.createElement("th")).textContent = "Idade";
         thead.appendChild(document.createElement("th")).textContent = "CPF";
@@ -68,16 +68,19 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
         for (let lin = 0; lin < vetAtletasFiltrados.length; lin++) {
             let linha = document.createElement("tr");
 
+             let tdId = document.createElement("td");
             let tdNome = document.createElement("td");
             let tdIdade = document.createElement("td");
             let tdCPF = document.createElement("td");
             let tdNacionalidade = document.createElement("td");
 
+            tdId.textContent = vetAtletasFiltrados[lin].id;
             tdNome.textContent = vetAtletasFiltrados[lin].nome;
             tdIdade.textContent = vetAtletasFiltrados[lin].idade;
             tdCPF.textContent = vetAtletasFiltrados[lin].cpf;
             tdNacionalidade.textContent = vetAtletasFiltrados[lin].nacionalidade;
 
+            linha.appendChild(tdId);
             linha.appendChild(tdNome);
             linha.appendChild(tdIdade);
             linha.appendChild(tdCPF);

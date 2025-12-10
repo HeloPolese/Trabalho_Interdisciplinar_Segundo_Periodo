@@ -43,6 +43,7 @@ btOkCorrida.addEventListener("click", () => {
 document.addEventListener('DOMContentLoaded', function () {
     verificarOpcaoCorridas();
     verificarModalidade();
+
 });
 
 function verificarOpcaoCorridas() {

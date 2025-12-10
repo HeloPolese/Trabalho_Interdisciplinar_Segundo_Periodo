@@ -67,6 +67,7 @@ main {
 .banner {
     margin-top: 30px;
     width: 1000px;
+    margin-bottom: 30px;
 }
 
 .select {

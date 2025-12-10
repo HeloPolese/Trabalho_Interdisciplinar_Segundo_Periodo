@@ -133,6 +133,7 @@ export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) 
     tabela.style.marginTop = "10px";
     tabela.style.width = "100%";
     tabela.style.textAlign = "left";
+    
 
     // Criar THEAD
     const thead = document.createElement("thead");

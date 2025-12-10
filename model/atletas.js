@@ -1,19 +1,22 @@
-export class Atleta{
-    #idAtleta;
+export class Atleta {
+    static #qtdAtleta = 0;
+    #id;
     #nome;
     #idade;
     #cpf;
     #nacionalidade;
 
-    constructor(id,nome,idade = 0,cpf, nacionalidade = ""){
-        this.#nome = nome;  
+    constructor(nome, idade = 0, cpf, nacionalidade = "") {
+        this.#nome = nome;
         this.#idade = idade;
         this.#cpf = cpf;
-        this.#idAtleta = id;
+        Atleta.#qtdAtleta++;
+        this.#id = "" + new Date().getFullYear() + Atleta.#qtdAtleta;
         this.#nacionalidade = nacionalidade;
     }
-    get idAtleta(){
-        return this.#idAtleta;
+
+    get id(){
+        return this.#id;
     }
     get nome(){
         return this.#nome;
