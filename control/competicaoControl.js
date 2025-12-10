@@ -123,20 +123,84 @@ export function listarCompetidores(idCompeticao) {
 }
 
 export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) {
-    if (listaCompeticoesFiltradas.length != 0) {
-        var tabela = document.createElement('table');
-        thead.textContent = "Nome da Competição";
-        thead = document.createElement('thead');
-        tabela.appendChild(thead);
-        tabela.appendChild(tbody);
-
-        for (let i = 0; i < listaCompeticoesFiltradas.length; i++) {
-            tbody = document.createElement('tbody');
-            tbody.textContent = listaCompeticoesFiltradas[i].nome;
-        }
+    if (listaCompeticoesFiltradas.length === 0) {
+        return "Nenhuma competição encontrada!";
     }
 
+    // Criar tabela
+    const tabela = document.createElement("table");
+    tabela.border = "1";
+    tabela.style.borderCollapse = "collapse";
+    tabela.style.marginTop = "10px";
+    tabela.style.width = "100%";
+    tabela.style.textAlign = "left";
+
+    // Criar THEAD
+    const thead = document.createElement("thead");
+    const trHead = document.createElement("tr");
+
+    const colunas = [
+        "Nome da Competição",
+        "Data",
+        "Local",
+        "Distância",
+        "Preço",
+        "Qtd Competidores"
+    ];
+
+    colunas.forEach(col => {
+        const th = document.createElement("th");
+        th.textContent = col;
+        th.style.padding = "8px";
+        th.style.background = "#eee";
+        trHead.appendChild(th);
+    });
+
+    thead.appendChild(trHead);
+    tabela.appendChild(thead);
+
+    // Criar TBODY
+    const tbody = document.createElement("tbody");
+
+    listaCompeticoesFiltradas.forEach(comp => {
+        const tr = document.createElement("tr");
+
+        const tdNome = document.createElement("td");
+        tdNome.textContent = comp.nome;
+
+        const tdData = document.createElement("td");
+        tdData.textContent = comp.data;
+
+        const tdLocal = document.createElement("td");
+        tdLocal.textContent = comp.local;
+
+        const tdDistancia = document.createElement("td");
+        tdDistancia.textContent = comp.distancia;
+
+        const tdPreco = document.createElement("td");
+        tdPreco.textContent = `R$ ${comp.preco}`;
+
+        const tdQtdCompetidores = document.createElement("td");
+        tdQtdCompetidores.textContent = comp.lstCompetidores.length;
+
+        tr.appendChild(tdNome);
+        tr.appendChild(tdData);
+        tr.appendChild(tdLocal);
+        tr.appendChild(tdDistancia);
+        tr.appendChild(tdPreco);
+        tr.appendChild(tdQtdCompetidores);
+
+        tr.querySelectorAll("td").forEach(td => td.style.padding = "6px");
+
+        tbody.appendChild(tr);
+    });
+
+    tabela.appendChild(tbody);
+
+    return tabela;
 }
+
+
 
 export function relatorioCompeticao(idCompeticao) {
     for (let i = 0; i < listaCompeticoes.length; i++) {

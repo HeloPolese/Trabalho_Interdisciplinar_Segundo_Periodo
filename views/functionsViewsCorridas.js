@@ -327,15 +327,21 @@ function executarFuncaoCorrida() {
                 let tabela = competicaoController.relatorioCompeticao(inBuscarId.value);
 
                 if (tabela) {
-                    tableCorrida.innerHTML = ""; 
-                    tableCorrida.appendChild(tabela); 
+                    tableCorrida.innerHTML = "";
+                    tableCorrida.appendChild(tabela);
                 } else {
                     outSaidaCorrida.style.color = "red";
                     outSaidaCorrida.textContent = "Competição não encontrada!";
                 }
             }
             break;
+        case "relatorio-todas-competicoes":
+            let tabelaGerada = competicaoController.listarCompeticoes();
+            if (tabelaGerada != undefined) {
+                tableCorrida.innerHTML = "";
+                tableCorrida.appendChild(tabelaGerada);
+            }
+            break;
     }
 }
-
 console.log(competicaoController.listaCompeticoes);
