@@ -253,16 +253,22 @@ export function relatorioCompeticao(idCompeticao) {
     return null;
 }
 
-
-
-
 export function excluirCompetidor(idCompeticao, cpfAtleta) {
-    if (listaCompeticoes.length <= idCompeticao) {
-        listaCompeticoes[idCompeticao.dataCompeticao].splice(cpfAtleta, 1);
-        return true;
-    } else {
-        return false;
+    var competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
+
+    if (!competicao) {
+        return false; 
     }
 
+    const indice = competicao.lstCompetidores.findIndex(
+    atleta => String(atleta.cpf) == String(cpfAtleta)
+)
 
+    if (indice === -1) {
+        return false; // Atleta não encontrado
+    }
+
+    competicao.lstCompetidores.splice(indice, 1);
+
+    return true;
 }

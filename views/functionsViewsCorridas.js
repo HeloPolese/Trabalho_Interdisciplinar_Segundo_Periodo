@@ -29,7 +29,7 @@ const divLimiteTempo = document.getElementById("divLimiteTempo");
 const selectOpcaoCorrida = document.getElementById("selectOpcaoCorrida");
 const divSelection = document.getElementById("divSelection");
 const selectModalidade = document.getElementById("selectModalidade");
-const tableCorrida = document.getElementById("table");
+const tableCorrida = document.getElementById("tableCorrida");
 
 selectModalidade.addEventListener("change", verificarModalidade);
 selectOpcaoCorrida.addEventListener("change", verificarOpcaoCorridas);
@@ -170,9 +170,8 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "excluir-competidor-competicao":
-            divNomeCorrida.style.display = "block";
+            divBuscarId.style.display = "block";
             divCpfAtletas.style.display = "block";
-            divData.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -317,6 +316,8 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Campos vazios!";
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
+                outSaidaCorrida.textContent = "";
+                tableCorrida.textContent = "";
                 outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
             }
         case "relatorio-competicao":
@@ -339,9 +340,23 @@ function executarFuncaoCorrida() {
             let tabelaGerada = competicaoController.listarCompeticoes();
             if (tabelaGerada != undefined) {
                 tableCorrida.innerHTML = "";
+                outSaidaCorrida.textContent = "";
+                tableCorrida.textContent = "";
                 tableCorrida.appendChild(tabelaGerada);
             }
             break;
+        case "excluir-competidor-competicao":
+            if (inBuscarId.value == "" || inCpfAtleta.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else if (competicaoController.excluirCompetidor(inBuscarId.value, inCpfAtleta.value)) {
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Excluido com sucesso!";
+            }
+            else {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Valor Inválido!";
+            }
     }
 }
 console.log(competicaoController.listaCompeticoes);
