@@ -1,6 +1,6 @@
 import { Atleta } from "../model/atletas.js";
 
-var vetAtletas = [];
+export var vetAtletas = [];
 
 export function cadastrarAtleta(nome, idade, cpf, nacionalidade) {
     let objExiste = vetAtletas.find(obj => obj.cpf === cpf);

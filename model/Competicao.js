@@ -104,7 +104,25 @@ export class Competicao {
     }
 
     get lstCompetidores() {
-        return this.#lstCompetidores.slice();
+        return this.#lstCompetidores;
+    }
+
+    adicionarAtleta(atleta) {
+        if (atleta !== undefined) {
+            if (this.#lstCompetidores.length < this.#limiteParticipante) {
+                this.#lstCompetidores.push(atleta);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    adicionarCompetidor(atleta) {
+        if (atleta instanceof Atleta && !this.#lstCompetidores.includes(atleta)) {
+            this.#lstCompetidores.push(atleta);
+            return true;
+        }
+        return false;
     }
 
     toString() {

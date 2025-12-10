@@ -123,6 +123,21 @@ select:focus {
     margin-top: 30px;
 }
 
+#btOkCorrida{
+    margin-top: 30px;
+    background-color: black;
+    color: white;
+    width: 165px;
+    border-radius: 5px;
+    padding: 6px;
+    margin-bottom: 40px;
+}
+
+#btOkCorrida:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 #btOk {
     margin-top: 30px;
     background-color: black;
@@ -136,6 +151,10 @@ select:focus {
 #btOk:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+#outSaidaCorrida{
+    margin-bottom: 50px;
 }
 
 #outSaida {
@@ -156,7 +175,7 @@ select:focus {
 }
 
 /* Container onde a tabela aparece */
-#table {
+#table,#tableCorrida {
     display: flex;
     justify-content: center;
     margin-top: 5px;
@@ -164,7 +183,7 @@ select:focus {
 }
 
 /* Estilo da tabela gerada no JS */
-#table table {
+#table table,#tableCorrida  {
     border-collapse: collapse;
     min-width: 400px;
     background-color: white;
@@ -175,13 +194,13 @@ select:focus {
 }
 
 /* Cabeçalho */
-#table thead {
+#table thead,#tableCorrida  {
     background-color: black;
     color: white;
 }
 
 /* Títulos */
-#table th {
+#table th,#tableCorrida  {
     padding: 14px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -189,7 +208,7 @@ select:focus {
 }
 
 /* Células */
-#table td {
+#table td,#tableCorrida  {
     padding: 12px 20px;
     text-align: center;
     font-size: 15px;

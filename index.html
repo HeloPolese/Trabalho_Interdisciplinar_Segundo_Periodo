@@ -1,39 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="base.css">
     <title>RunBase: Gerenciamento de corridas online</title>
 </head>
+
 <body>
-    <header class="cabecalho">
-    <img src="./imagens/logo1.png" alt="logo do site" class="logo">
-    <div class="container-links">
-    <a href="index.html" class="link">Home</a>
-    <a href="corridas.html" class="link">Corridas</a>
-    <a href="atletas.html" class="link">Atletas</a>
+    <div id="home">
+        <header class="cabecalho">
+            <img src="./imagens/logo1.png" alt="logo do site" class="logo">
+            <div class="container-links">
+                <a class = "link" href="#home">Home</a>
+                <a class = "link" href="#competicao">Corridas</a>
+                <a class = "link" href="#atleta">Atletas</a>
+            </div>
+
+        </header>
+        <main>
+            <div class="home-text">
+                <p>Seja bem vindo a <strong>RunBase</strong>! um sistema para gerenciamento de competições de
+                    corrida,<br>
+                    permitindo cadastrar maratonas e provas de trail running, registrar atletas e consultar<br> eventos
+                    de forma simples e organizada.</p>
+            </div>
+            <div class="container-banner">
+                <img src="./imagens/banner.png" alt="imagem banner" class="banner">
+            </div>
+        </main>
     </div>
 
-    </header>
-    <main>
-        <div class="home-text">
-                <p>Seja bem vindo a <strong>RunBase</strong>! um sistema para gerenciamento de competições de corrida,<br>
-                     permitindo cadastrar maratonas e provas de trail running, registrar atletas e consultar<br> eventos de forma simples e organizada.</p>
-        </div>
-        <div class="container-banner">
-        <img src="./imagens/banner.png" alt="imagem banner" class="banner">
-        </div>
+    <div id="competicao">
+        <header class="cabecalho">
+            <img src="./imagens/logo1.png" alt="logo do site" class="logo">
+            <div class="container-links">
+                <a href="#home" class="link">Home</a>
+                <a href="#competicao" class="link">Corridas</a>
+                <a href="#atleta" class="link">Atletas</a>
+            </div>
+        </header>
+        <main>
+            <div class="title">
+                <h3>Editar Corridas</h3>
+            </div>
+            <div class="home-text">
+                <p>As Competições cadastradas no sistema incluem provas de Maratona
+                    e Trail Running,<br> permitindo registrar informações básicas, controlar
+                    participantes e visualizar os <br> eventos de forma simples e organizada.</p>
+            </div>
+            <div class="select">
+                <select id="selectOpcaoCorrida" class="selectOpcao">
+                    <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
+                    <option value="cadastrar-competicao">Cadastrar Competição</option>
+                    <option value="editar-competicao">Editar Competição</option>
+                    <option value="excluir-competicao">Excluir Competição</option>
+                    <option value="adicionar-atleta-competicao">Adicionar Atleta a Competição</option>
+                    <option value="listar-competidores-competicao">Listar Competidores de Competição</option>
+                    <option value="relatorio-competicao">Listar Relatório de Competição</option>
+                    <option value="relatorio-todas-competicoes">Listar Relatório de Competições</option>
+                    <option value="excluir-competidor-competicao">Excluir Competidor da Competição</option>
+                </select>
+            </div>
+            <div class="inputs">
+                <div id="divBuscarId">
+                    <label for="inBuscarId">Buscar por ID: </label><input type="text" id="inBuscarId"
+                        placeholder="Insira o ID da Competição...">
+                </div>
+                <div id="divSelection">
+                    <label for="selectModalidade">Escolha a modalidade: </label>
+                    <br><select id="selectModalidade" class="selectOpcaoCorrida">
+                        <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
+                        <option value="MARATONA">Maratona</option>
+                        <option value="TRILHA">Trilha</option>
+                    </select>
+                </div>
+                <div id="divNomeCorrida">
+                    <label for="inNomeCorrida">Nome da Competição: </label><input type="text" id="inNomeCorrida"
+                        placeholder="Insira o nome da Competição...">
+                </div>
+                <div id="divCpfAtletas">
+                    <label for="inCpfAtleta">CPF do Atleta: </label><input type="text" id="inCpfAtleta"
+                        placeholder="Insira o nome do Atleta...">
+                </div>
+                <div id="divData">
+                    <label for="inDataCorrida">Data da Competição: </label><input type="text" id="inDataCorrida"
+                        placeholder="Insira a data da Competição... ">
+                </div>
+                <div id="divLocal">
+                    <label for="inLocal">Local da Competição: </label><input type="text" id="inLocal"
+                        placeholder="Insira o local da Competição...">
+                </div>
+                <div id="divDistancia">
+                    <label for="inDistancia">Distância da Competição: </label><input type="number" id="inDistancia"
+                        placeholder="Insira a distância da Competição em KM...">
+                </div>
+                <div id="divLimiteAtletas">
+                    <label for="inLimiteParti">Limite de Participantes </label><input type="number" id="inLimiteParti"
+                        placeholder="Insira o limite de participantes...">
+                </div>
+                <div id="divPreco">
+                    <label for="inPreco">Preço da Competição: </label><input type="number" id="inPreco"
+                        placeholder="Insira o preço da Competição...">
+                </div>
+                <div id="divLimiteTempo">
+                    <label for="inLimiteTempo">Limite de Tempo da Competição: </label><input type="text"
+                        id="inLimiteTempo" placeholder="Insira o limite de tempo da Competição...">
+                </div>
+                <div id="divAltimetria">
+                    <label for="inAltimetria">Altimetria da Competição: </label><input type="number" id="inAltimetria"
+                        placeholder="Insira a altimetria da Competição em metros...">
+                </div>
+                <div id="divQtdCheckPoint">
+                    <label for="inCheckPoint">Quantidade de Checkpoints: </label><input type="number" id="inCheckPoint"
+                        placeholder="Insira a quantidade de Checkpoints...">
+                </div>
+                <div id="divGrauDificuldade">
+                    <label for="inGrauDificuldade">Grau de Dificuldade</label><input type="text" id="inGrauDificuldade"
+                        placeholder="Insira o grau de dificuldade (ex: Facil, medio, dificil)">
+                </div>
+                <p> <input type="button" id="btOkCorrida" value="Executar"> </p>
+                 <p id="outSaidaCorrida"></p>
+                <section id="tableCorrida"></section>
+            </div>
+        </main>
 
+        <script type="module" src="./views/functionsViewsCorridas.js"></script>
+    </div>
+
+    <div id="atleta">
+        <header class="cabecalho">
+            <img src="./imagens/logo1.png" alt="logo do site" class="logo">
+            <div class="container-links">
+                <a href="#home" class="link">Home</a>
+                <a href="#competicao" class="link">Corridas</a>
+                <a href="#atleta" class="link">Atletas</a>
+            </div>
+        </header>
+        <main>
+            <div class="title">
+                <h3>Editar Atletas</h3>
+            </div>
+
+            <div>
+                <p class="home-text">Os atletas cadastrados no sistema incluem todas as informações essenciais <br> para
+                    participação nas corridas.
+                    É possível registrar novos atletas, editar seus dados,<br> removê-los e vinculá-los às provas de
+                    Maratona
+                    ou Trail Running.</p>
+            </div>
+            <div class="select">
+                <select id="selectOpcao" class="selectOpcao">
+                    <option value="Selecione-Uma-Opção" disabled selected> Selecione Uma Opção </option>
+                    <option value="cadastrar-atleta">Cadastrar Atleta</option>
+                    <option value="editar-atleta">Editar Atleta</option>
+                    <option value="excluir-atleta">Excluir Atleta</option>
+                    <option value="listar-atletas">Listar Atletas</option>
+                </select>
+
+            </div>
+
+            <div class="inputs">
+                <div id="divCpfPes">
+                    <label for="inCpfEditar">Pesquisar o CPF do Atleta: </label><input type="text" id="inCpfEditar"
+                        placeholder="Pesquise o CPF aqui...">
+                </div>
+                <div id="divNome">
+                    <label for="inNome">Nome do Atleta: </label><input type="text" id="inNome" placeholder="Nome...">
+                </div>
+                <div id="divIdade">
+                    <label for="inIdade">Idade do Atleta: </label><input type="number" id="inIdade"
+                        placeholder="Idade...">
+                </div>
+                <div id="divCpf">
+                    <label for="inCpf">CPF do Atleta: </label><input type="text" id="inCpf" placeholder="CPF...">
+                </div>
+            <div id="divNacionalidade">
+                <label for="inNacionalidade">Nacionalidade do Atleta: </label><input type="text" id="inNacionalidade"
+                    placeholder="Nacionalidade...">
+            </div>
+            <p> <input type="button" id="btOk" value="Executar"> </p>
+            <p id="outSaida"></p>
+            <section id="table"></section>
+    </div>
     </main>
-
     <footer>
         <div class="container-footer">
-             <p>Brasil</p>
-             <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
+            <p>Brasil</p>
+            <img src="./imagens/imgFooter.png" alt="imagem bandeira do Brasil" class="brasil">
         </div>
     </footer>
+    <script type="module" src="/views/functionsViews.js"></script>
+    <script type="module" src="/views/functionsViewsCorridas.js"></script>
+    </div>
 
-<script type="module" src=""></script>
+
 </body>
+
 </html>
