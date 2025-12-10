@@ -175,7 +175,7 @@ select:focus {
 }
 
 /* Container onde a tabela aparece */
-#table {
+#table,#tableCorrida {
     display: flex;
     justify-content: center;
     margin-top: 5px;
@@ -183,7 +183,7 @@ select:focus {
 }
 
 /* Estilo da tabela gerada no JS */
-#table table {
+#table table,#tableCorrida  {
     border-collapse: collapse;
     min-width: 400px;
     background-color: white;
@@ -194,13 +194,13 @@ select:focus {
 }
 
 /* Cabeçalho */
-#table thead {
+#table thead,#tableCorrida  {
     background-color: black;
     color: white;
 }
 
 /* Títulos */
-#table th {
+#table th,#tableCorrida  {
     padding: 14px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -208,7 +208,7 @@ select:focus {
 }
 
 /* Células */
-#table td {
+#table td,#tableCorrida  {
     padding: 12px 20px;
     text-align: center;
     font-size: 15px;

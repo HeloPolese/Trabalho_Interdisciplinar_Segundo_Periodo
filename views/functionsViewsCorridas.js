@@ -29,7 +29,7 @@ const divLimiteTempo = document.getElementById("divLimiteTempo");
 const selectOpcaoCorrida = document.getElementById("selectOpcaoCorrida");
 const divSelection = document.getElementById("divSelection");
 const selectModalidade = document.getElementById("selectModalidade");
-const tableCorrida = document.getElementById("tableCorrida");
+const tableCorrida = document.getElementById("table");
 
 selectModalidade.addEventListener("change", verificarModalidade);
 selectOpcaoCorrida.addEventListener("change", verificarOpcaoCorridas);
@@ -145,7 +145,7 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "relatorio-competicao":
-            divBuscarId.style.display = "";
+            divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -319,6 +319,22 @@ function executarFuncaoCorrida() {
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
                 outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
             }
+        case "relatorio-competicao":
+            if (inBuscarId.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else {
+                let tabela = competicaoController.relatorioCompeticao(inBuscarId.value);
+
+                if (tabela) {
+                    tableCorrida.innerHTML = ""; 
+                    tableCorrida.appendChild(tabela); 
+                } else {
+                    outSaidaCorrida.style.color = "red";
+                    outSaidaCorrida.textContent = "Competição não encontrada!";
+                }
+            }
+            break;
     }
 }
 

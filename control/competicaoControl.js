@@ -141,23 +141,28 @@ export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) 
 export function relatorioCompeticao(idCompeticao) {
     for (let i = 0; i < listaCompeticoes.length; i++) {
         if (listaCompeticoes[i].idCompeticao == idCompeticao) {
+
+            var lstCompeticoesFiltradas = listaCompeticoes.filter(c => c.idCompeticao == idCompeticao);
+
             var tabela = document.createElement('table');
             var thead = document.createElement('thead');
             var tbody = document.createElement('tbody');
 
             var cabecalhoLinha = document.createElement('tr');
             var cabecalho = ['Nome', 'Data', 'Local', 'Distância (km)', 'Limite de Participantes', 'Preço (R$)', 'Tipo'];
+
             cabecalho.forEach(cabecalhoTexto => {
                 var header = document.createElement('th');
                 header.textContent = cabecalhoTexto;
                 cabecalhoLinha.appendChild(header);
             });
+
             thead.appendChild(cabecalhoLinha);
             tabela.appendChild(thead);
 
             lstCompeticoesFiltradas.forEach(competicao => {
                 var linha = document.createElement('tr');
-                lstCompeticoesFiltradas.indexOf(competicao);
+
                 var celulas = [
                     competicao.nome,
                     competicao.data,
@@ -167,11 +172,13 @@ export function relatorioCompeticao(idCompeticao) {
                     competicao.preco,
                     (competicao instanceof Maratona) ? 'Maratona' : 'Trilha'
                 ];
+
                 celulas.forEach(celulaTexto => {
                     var celula = document.createElement('td');
                     celula.textContent = celulaTexto;
                     linha.appendChild(celula);
                 });
+
                 tbody.appendChild(linha);
             });
 
@@ -182,6 +189,7 @@ export function relatorioCompeticao(idCompeticao) {
     }
     return null;
 }
+
 
 
 
