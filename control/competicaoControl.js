@@ -1,10 +1,7 @@
 import { Maratona } from "../model/Maratona.js";
 import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
 import { Atleta } from "../model/atletas.js";
-<<<<<<< HEAD
-=======
 import { vetAtletas } from "../control/atletasControl.js";
->>>>>>> main
 
 export var listaCompeticoes = [];
 
@@ -147,8 +144,6 @@ export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) 
     if (listaCompeticoesFiltradas.length === 0) {
         return "Nenhuma competição encontrada!";
     }
-<<<<<<< HEAD
-=======
 
     // Criar tabela
     const tabela = document.createElement("table");
@@ -221,7 +216,6 @@ export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) 
     tabela.appendChild(tbody);
 
     return tabela;
->>>>>>> main
 }
 
 
@@ -237,19 +231,7 @@ export function relatorioCompeticao(idCompeticao) {
             var tbody = document.createElement('tbody');
 
             var cabecalhoLinha = document.createElement('tr');
-<<<<<<< HEAD
-            var cabecalho = [
-                'Nome',
-                'Data',
-                'Local',
-                'Distância (km)',
-                'Limite de Participantes',
-                'Preço (R$)',
-                'Tipo'
-            ];
-=======
             var cabecalho = ['Nome', 'Data', 'Local', 'Distância (km)', 'Limite de Participantes', 'Preço (R$)', 'Tipo'];
->>>>>>> main
 
             cabecalho.forEach(cabecalhoTexto => {
                 var header = document.createElement('th');
@@ -262,10 +244,6 @@ export function relatorioCompeticao(idCompeticao) {
 
             lstCompeticoesFiltradas.forEach(competicao => {
                 var linha = document.createElement('tr');
-<<<<<<< HEAD
-                lstCompeticoesFiltradas.indexOf(competicao);
-=======
->>>>>>> main
 
                 var celulas = [
                     competicao.nome,
@@ -300,9 +278,6 @@ export function excluirCompetidor(idCompeticao, cpfAtleta) {
     if (!competicao) {
         return false; 
     }
-<<<<<<< HEAD
-}
-=======
 
     const indice = competicao.lstCompetidores.findIndex(
     atleta => String(atleta.cpf) == String(cpfAtleta)
@@ -316,4 +291,3 @@ export function excluirCompetidor(idCompeticao, cpfAtleta) {
 
     return true;
 }
->>>>>>> main
