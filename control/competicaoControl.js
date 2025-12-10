@@ -1,8 +1,10 @@
 import { Maratona } from "../model/Maratona.js";
 import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
 import { Atleta } from "../model/atletas.js";
+import { vetAtletas } from "../control/atletasControl.js";
 
 export var listaCompeticoes = [];
+export var listaCompetidor = [];
 
 export function gerarID() {
     if (listaCompeticoes.length == 0) {
@@ -112,37 +114,34 @@ export function excluirCompeticao(idCompeticao) {
     return null;
 }
 
-export function adicionarAtleta(idCompeticao, atletaNome) {
-    if (atletaNome != undefined && atletaNome instanceof Atleta) {
-        for (let i = 0; i < listaCompeticoes.length; i++) {
-            if (listaCompeticoes[i].idCompeticao == idCompeticao) {
-                listaCompeticoes[i].adicionarAtleta(atletaNome);
-                return true;
-            }
-        }
+export function adicionarAtletaAcompeticao(idCompeticao, cpfAtleta) {
+
+    const atletaEncontrado = vetAtletas.find(a => a.cpf === cpfAtleta);
+
+    if (!atletaEncontrado) {
+        return false;
     }
-    return false;
+
+    const competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
+
+    if (!competicao) {
+        return false;
+    }
+    competicao.adicionarAtleta(atletaEncontrado);
+    //console.log("Competidores da competição:", competicao.lstCompetidores);
+    return true;
 }
 
-export function listarCompetidores(nomeCompeticao, data, local) {
-    if (nomeCompeticao instanceof Competicao) {
-        for (let i = 0; i < listaCompeticoes.length; i++) {
-            if (nomeCompeticao[i].data == data) {
-                if (nomeCompeticao[i].local == local) {
-                    return nomeCompeticao[i].listarCompetidores();
-                } else {
-                    return null;
-                }
-            } else {
-                return null;
-            }
-        }
-    } else {
+export function listarCompetidores(idCompeticao) {
+    const competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
+
+    if (!competicao) {
         return null;
     }
+    return competicao.lstCompetidores;
 }
 
-export function listarCompeticoesPorNome(listaCompeticoesFiltradas = listaCompeticoes) {
+export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) {
     if (listaCompeticoesFiltradas.length != 0) {
         var tabela = document.createElement('table');
         thead.textContent = "Nome da Competição";

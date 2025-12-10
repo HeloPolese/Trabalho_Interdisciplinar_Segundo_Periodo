@@ -1,4 +1,4 @@
-import { Competicao } from "./Competicao.js";
+import { Competicao } from "../model/Competicao.js";
 
 export class Maratona extends Competicao {
     #altimetria;

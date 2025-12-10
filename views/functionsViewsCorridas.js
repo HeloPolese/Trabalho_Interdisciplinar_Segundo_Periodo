@@ -15,8 +15,8 @@ const divBuscarId = document.getElementById("divBuscarId");
 const inAltimetria = document.getElementById("inAltimetria");
 const inLimiteTempo = document.getElementById("inLimiteTempo");
 const inBuscarId = document.getElementById("inBuscarId");
-const btOk = document.getElementById("btOk");
-const outSaida = document.getElementById("outSaida");
+const btOkCorrida = document.getElementById("btOkCorrida");
+const outSaidaCorrida = document.getElementById("outSaidaCorrida");
 const divNomeCorrida = document.getElementById("divNomeCorrida");
 const divCpfAtletas = document.getElementById("divCpfAtletas");
 const divQtdCheckPoint = document.getElementById("divQtdCheckPoint");
@@ -29,15 +29,15 @@ const divLimiteTempo = document.getElementById("divLimiteTempo");
 const selectOpcaoCorrida = document.getElementById("selectOpcaoCorrida");
 const divSelection = document.getElementById("divSelection");
 const selectModalidade = document.getElementById("selectModalidade");
-const table = document.getElementById("table");
+const tableCorrida = document.getElementById("tableCorrida");
 
 selectModalidade.addEventListener("change", verificarModalidade);
 selectOpcaoCorrida.addEventListener("change", verificarOpcaoCorridas);
 
-btOk.addEventListener("click", executarFuncaoCorrida);
+btOkCorrida.addEventListener("click", executarFuncaoCorrida);
 
-btOk.addEventListener("click", () => {
-  selectModalidade.value = "Selecione-Uma-Opção";
+btOkCorrida.addEventListener("click", () => {
+    selectModalidade.value = "Selecione-Uma-Opção";
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -117,21 +117,8 @@ function verificarOpcaoCorridas() {
             inPreco.value = "";
             inLimiteTempo.value = "";
             break;
-        case "listar-competicao":
-            inNomeCorrida.value = "";
-            inDataCorrida.value = "";
-            inLocal.value = "";
-            inDistancia.value = "";
-            inCheckPoint.value = "";
-            inGrauDificuldade.value = "";
-            inAltimetria.value = "";
-            inLimiteParti.value = "";
-            inPreco.value = "";
-            inLimiteTempo.value = "";
-            break;
         case "adicionar-atleta-competicao":
             divCpfAtletas.style.display = "block";
-            divSelection.style.display = "block";
             divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
@@ -145,9 +132,7 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "listar-competidores-corrida":
-            divNomeCorrida.style.display = "block";
-            divData.style.display = "block";
-            divLocal.style.display = "block";
+            divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -200,6 +185,20 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            break;
+        case "listar-competidores-competicao":
+            divBuscarId.style.display = "block";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
+            break;
     }
 }
 
@@ -224,19 +223,19 @@ function verificarModalidade() {
 function executarFuncaoCorrida() {
 
     let opcao = selectOpcaoCorrida.value;
-    outSaida.textContent = "";
-    table.textContent = "";
+    outSaidaCorrida.textContent = "";
+    tableCorrida.textContent = "";
 
     switch (opcao) {
         case "cadastrar-competicao":
             if (inNomeCorrida.value == "" || inDataCorrida.value == "" || inLocal.value == "" || inDistancia.value == "" || inLimiteParti.value == "" || inPreco.value == "" || inLimiteTempo.value == "") {
-                outSaida.style.color = "red";
-                outSaida.textContent = "Por favor, preencha todos os campos para cadastrar a competição.";
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Por favor, preencha todos os campos para cadastrar a competição.";
                 inNomeCorrida.focus();
             }
             else if (competicaoController.cadastrarCompeticao(selectModalidade.value, inNomeCorrida.value, inDataCorrida.value, inLocal.value, inDistancia.value, parseInt(inLimiteParti.value), parseFloat(inPreco.value), parseInt(inLimiteTempo.value), inCheckPoint.value, inGrauDificuldade.value, inAltimetria.value)) {
-                outSaida.style.color = "green";
-                outSaida.textContent = "Competição cadastrada com sucesso!";
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Competição cadastrada com sucesso!";
                 inNomeCorrida.value = "";
                 inDataCorrida.value = "";
                 inLocal.value = "";
@@ -249,19 +248,19 @@ function executarFuncaoCorrida() {
                 inLimiteTempo.value = "";
             }
             else {
-                outSaida.style.color = "red";
-                outSaida.textContent = "Erro.";
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Erro.";
             }
             break;
         case "editar-competicao":
             if (inBuscarId.value == "") {
-                outSaida.style.color = "red";
-                outSaida.textContent = "Por favor, preencha todos os campos para editar a competição.";
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Por favor, preencha todos os campos para editar a competição.";
                 inNomeCorrida.focus();
             }
             else if (competicaoController.editarCompeticao(inBuscarId.value, inNomeCorrida.value, inDataCorrida.value, inLocal.value, inDistancia.value, inLimiteParti.value, inPreco.value, inLimiteTempo.value, inCheckPoint.value, inGrauDificuldade.value, inAltimetria.value)) {
-                outSaida.style.color = "green";
-                outSaida.textContent = "Competição editada com sucesso!";
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Competição editada com sucesso!";
                 inNomeCorrida.value = "";
                 inDataCorrida.value = "";
                 inLocal.value = "";
@@ -274,15 +273,15 @@ function executarFuncaoCorrida() {
                 inLimiteTempo.value = "";
             }
             break;
-            case "excluir-competicao":
+        case "excluir-competicao":
             if (inBuscarId.value == "") {
-                outSaida.style.color = "red";
-                outSaida.textContent = "Por favor, insira o ID da competição para excluir.";
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Por favor, insira o ID da competição para excluir.";
                 inBuscarId.focus();
             }
-            else if (competicaoController.excluirCompeticao(inBuscarId.value)){
-                outSaida.style.color = "green";
-                outSaida.textContent = "Competição excluída com sucesso!";
+            else if (competicaoController.excluirCompeticao(inBuscarId.value)) {
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Competição excluída com sucesso!";
                 inNomeCorrida.value = "";
                 inDataCorrida.value = "";
                 inLocal.value = "";
@@ -295,22 +294,33 @@ function executarFuncaoCorrida() {
                 inLimiteTempo.value = "";
             }
             else {
-                outSaida.style.color = "red";
-                outSaida.textContent = "Erro ao excluir a competição. Verifique o ID e tente novamente.";
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Erro ao excluir a competição. Verifique o ID e tente novamente.";
             }
             break;
-            case "adicionar-atleta-competicao":
-                if(inBuscarId.value == "" || inCpfAtleta.value == ""){
-                    outSaida.style.color = "red";
-                    outSaida.textContent = "Campos com valor inválido!";
-                }
-                else if(competicaoController.adicionarAtleta(inBuscarId.value, inCpfAtleta.value)){
-                    outSaida.style.color = "green";
-                    outSaida.textContent = "Adicionado com sucesso!";
-                }else{
-                    outSaida.style.color = "red";
-                    outSaida.textContent = "Erro!";
-                }
+        case "adicionar-atleta-competicao":
+            if (inBuscarId.value == "" || inCpfAtleta.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Por favor, preencha todos os campos.";
+                inBuscarId.focus();
+            }
+            else if (competicaoController.adicionarAtletaAcompeticao(inBuscarId.value, inCpfAtleta.value)) {
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Adicionado com sucesso!";
+            }
+            else {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Erro!";
+                inBuscarId.focus();
+            }
+            break;
+        case "listar-competidores-competicao":
+            if (inBuscarId.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
+                outSaidaCorrida = competicaoController.listarCompetidores(inBuscarId.value);
+            }
     }
 }
 
