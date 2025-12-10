@@ -104,7 +104,7 @@ export class Competicao {
     }
 
     get lstCompetidores() {
-        return this.#lstCompetidores.slice();
+        return this.#lstCompetidores;
     }
 
     adicionarAtleta(atleta) {
