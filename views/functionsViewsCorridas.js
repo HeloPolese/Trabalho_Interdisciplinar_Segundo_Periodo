@@ -145,9 +145,7 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "relatorio-competicao":
-            divNomeCorrida.style.display = "block";
-            divData.style.display = "block";
-            divLocal.style.display = "block";
+            divBuscarId.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -172,9 +170,8 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "excluir-competidor-competicao":
-            divNomeCorrida.style.display = "block";
+            divBuscarId.style.display = "block";
             divCpfAtletas.style.display = "block";
-            divData.style.display = "block";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -319,9 +316,46 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Campos vazios!";
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
+                outSaidaCorrida.textContent = "";
+                tableCorrida.textContent = "";
                 outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
+            }
+        case "relatorio-competicao":
+            if (inBuscarId.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else {
+                let tabela = competicaoController.relatorioCompeticao(inBuscarId.value);
+                if (tabela) {
+                    tableCorrida.innerHTML = "";
+                    tableCorrida.appendChild(tabela);
+                } else {
+                    outSaidaCorrida.style.color = "red";
+                    outSaidaCorrida.textContent = "Competição não encontrada!";
+                }
+            }
+            break;
+        case "relatorio-todas-competicoes":
+            let tabelaGerada = competicaoController.listarCompeticoes();
+            if (tabelaGerada != undefined) {
+                tableCorrida.innerHTML = "";
+                outSaidaCorrida.textContent = "";
+                tableCorrida.textContent = "";
+                tableCorrida.appendChild(tabelaGerada);
+            }
+            break;
+        case "excluir-competidor-competicao":
+            if (inBuscarId.value == "" || inCpfAtleta.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else if (competicaoController.excluirCompetidor(inBuscarId.value, inCpfAtleta.value)) {
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Excluido com sucesso!";
+            }
+            else {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Valor Inválido!";
             }
     }
 }
-
 console.log(competicaoController.listaCompeticoes);
