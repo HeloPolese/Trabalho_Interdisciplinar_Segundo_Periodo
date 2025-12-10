@@ -1,7 +1,7 @@
 import { Maratona } from "../model/Maratona.js";
 import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
-import { Atleta } from "../model/atletas.js";
 import { vetAtletas } from "../control/atletasControl.js";
+import { gerarTabelaAtletas } from "../control/atletasControl.js";
 
 export var listaCompeticoes = [];
 
@@ -137,50 +137,8 @@ export function listarCompetidores(idCompeticao) {
     if (!competicao) {
         return null;
     } else {
-if (!competicao) {
-    return null;
-} else {
-    var tabela = document.createElement('table');
-    var thead = document.createElement('thead');
-    var tbody = document.createElement('tbody');
 
-    // CORREÇÃO 1: Criar linha para o cabeçalho
-    var trHead = document.createElement('tr');
-    trHead.appendChild(document.createElement('th')).textContent = "Nome";
-    trHead.appendChild(document.createElement('th')).textContent = "CPF";
-    trHead.appendChild(document.createElement('th')).textContent = "Idade";
-    trHead.appendChild(document.createElement('th')).textContent = "Nacionalidade";
-    thead.appendChild(trHead);
-    tabela.appendChild(thead);
-
-    // CORREÇÃO 2 e 3: Criar nova linha para cada competidor
-    for (let i = 0; i < competicao.lstCompetidores.length; i++) {
-        let linha = document.createElement("tr"); // NOVA linha para cada competidor
-        
-        let tdNome = document.createElement("td");
-        let tdCPF = document.createElement("td");
-        let tdIdade = document.createElement("td");
-        let tdNacionalidade = document.createElement("td");
-        
-        // Preencher conteúdo primeiro
-        tdNome.textContent = competicao.lstCompetidores[i].nome;
-        tdCPF.textContent = competicao.lstCompetidores[i].cpf;
-        tdIdade.textContent = competicao.lstCompetidores[i].idade;
-        tdNacionalidade.textContent = competicao.lstCompetidores[i].nacionalidade;
-        
-        // Anexar células à linha
-        linha.appendChild(tdNome);
-        linha.appendChild(tdCPF);
-        linha.appendChild(tdIdade);
-        linha.appendChild(tdNacionalidade);
-        
-        // Anexar linha ao tbody (apenas UMA vez)
-        tbody.appendChild(linha);
-    }
-
-    tabela.appendChild(tbody);
-    return tabela;
-}
+        return gerarTabelaAtletas(competicao.lstCompetidores);
     }
 
 }
@@ -322,12 +280,12 @@ export function excluirCompetidor(idCompeticao, cpfAtleta) {
     var competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
 
     if (!competicao) {
-        return false; 
+        return false;
     }
 
     const indice = competicao.lstCompetidores.findIndex(
-    atleta => String(atleta.cpf) == String(cpfAtleta)
-)
+        atleta => String(atleta.cpf) == String(cpfAtleta)
+    )
 
     if (indice === -1) {
         return false; // Atleta não encontrado
