@@ -329,6 +329,7 @@ function executarFuncaoCorrida() {
                 tableCorrida.textContent = "";
                 tableCorrida.appendChild(competicaoController.listarCompetidores(inBuscarId.value));
             }
+            break;
         case "relatorio-competicao":
             if (inBuscarId.value == "") {
                 outSaidaCorrida.style.color = "red";
