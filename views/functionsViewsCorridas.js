@@ -205,6 +205,20 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             divTableCorrida.style.display = "block";
             break;
+        case "gerar-relatorio-competicao":
+            divBuscarId.style.display = "";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
+            divTableCorrida.style.display = "";
+
     }
 }
 

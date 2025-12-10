@@ -7,22 +7,6 @@ import {Competidor} from "../model/Competidor.js";
 
 export var listaCompeticoes = [];
 
-export function gerarID() {
-    if (listaCompeticoes.length == 0) {
-        return 1;
-    } else {
-        let maiorID = listaCompeticoes[0].idCompeticao;
-
-        for (let i = 1; i < listaCompeticoes.length; i++) {
-            if (listaCompeticoes[i].idCompeticao > maiorID) {
-                maiorID = listaCompeticoes[i].idCompeticao;
-            }
-        }
-
-        return maiorID + 1;
-    }
-}
-
 export function cadastrarCompeticao(
     nomeModalidade,
     nome,
@@ -125,7 +109,7 @@ export function adicionarAtletaAcompeticao(idCompeticao, cpfAtleta) {
         return false;
     } else if (vetAtletas.findIndex(c => c.refAtleta == atletaEncontrado.cpfAtleta) != -1) {
         competicao.adicionarAtleta(atletaEncontrado);
-        atletaEncontrado.nome = new Competidor(atletaEncontrado);
+        atletaEncontrado.nome = new Competidor(atletaEncontrado, );
         return true;
     }
 
