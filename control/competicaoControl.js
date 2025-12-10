@@ -2,6 +2,8 @@ import { Maratona } from "../model/Maratona.js";
 import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
 import { vetAtletas } from "../control/atletasControl.js";
 import { gerarTabelaAtletas } from "../control/atletasControl.js";
+import {Competidor} from "../model/Competidor.js";    
+
 
 export var listaCompeticoes = [];
 
@@ -116,19 +118,18 @@ export function excluirCompeticao(idCompeticao) {
 export function adicionarAtletaAcompeticao(idCompeticao, cpfAtleta) {
 
     const atletaEncontrado = vetAtletas.find(a => a.cpf === cpfAtleta);
-
-    if (!atletaEncontrado) {
-        return false;
-    }
-
     const competicao = listaCompeticoes.find(c => c.idCompeticao == idCompeticao);
-
-    if (!competicao) {
+    if (!atletaEncontrado && !competicao) {
         return false;
+    } else if (atletaEncontrado instanceof Competidor) {
+        return false;
+    } else if (vetAtletas.findIndex(c => c.refAtleta == atletaEncontrado.cpfAtleta) != -1) {
+        competicao.adicionarAtleta(atletaEncontrado);
+        atletaEncontrado.nome = new Competidor(atletaEncontrado);
+        return true;
     }
-    competicao.adicionarAtleta(atletaEncontrado);
-    //console.log("Competidores da competição:", competicao.lstCompetidores);
-    return true;
+
+
 }
 
 export function listarCompetidores(idCompeticao) {
