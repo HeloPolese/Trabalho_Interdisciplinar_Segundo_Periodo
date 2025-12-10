@@ -145,9 +145,7 @@ function verificarOpcaoCorridas() {
             inLimiteTempo.value = "";
             break;
         case "relatorio-competicao":
-            divNomeCorrida.style.display = "block";
-            divData.style.display = "block";
-            divLocal.style.display = "block";
+            divBuscarId.style.display = "";
             inNomeCorrida.value = "";
             inDataCorrida.value = "";
             inLocal.value = "";
@@ -319,7 +317,7 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Campos vazios!";
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
-                outSaidaCorrida = competicaoController.listarCompetidores();
+                outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
             }
     }
 }

@@ -155,7 +155,6 @@ export function relatorioCompeticao(idCompeticao) {
             thead.appendChild(cabecalhoLinha);
             tabela.appendChild(thead);
 
-
             lstCompeticoesFiltradas.forEach(competicao => {
                 var linha = document.createElement('tr');
                 lstCompeticoesFiltradas.indexOf(competicao);
