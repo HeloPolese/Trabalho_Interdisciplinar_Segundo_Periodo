@@ -44,8 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
     verificarOpcaoCorridas();
     verificarModalidade();
 
-    tableCorrida.innerHTML = "";
-    tableCorrida.style.display = "none";
 });
 
 function verificarOpcaoCorridas() {
