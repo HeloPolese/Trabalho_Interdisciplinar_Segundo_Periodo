@@ -218,6 +218,21 @@ function verificarOpcaoCorridas() {
             inPreco.value = "";
             inLimiteTempo.value = "";
             divTableCorrida.style.display = "";
+            break;
+        case "gerar-relatorio-competicao":
+            divBuscarId.style.display = "block";
+            inNomeCorrida.value = "";
+            inDataCorrida.value = "";
+            inLocal.value = "";
+            inDistancia.value = "";
+            inCheckPoint.value = "";
+            inGrauDificuldade.value = "";
+            inAltimetria.value = "";
+            inLimiteParti.value = "";
+            inPreco.value = "";
+            inLimiteTempo.value = "";
+            divTableCorrida.style.display = "";
+            break;
 
     }
 }
@@ -380,6 +395,18 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Valor Inválido!";
             }
+        case "gerar-relatorio-competicao":
+            if (inBuscarId.value == "") {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Campos vazios!";
+            } else if (competicaoController.gerarRelatorioCompeticao(inBuscarId.value)) {
+                outSaidaCorrida.style.color = "green";
+                outSaidaCorrida.textContent = "Relatório gerado com sucesso!";
+            } else {
+                outSaidaCorrida.style.color = "red";
+                outSaidaCorrida.textContent = "Erro ao gerar o relatório!";
+            }
+            break;
     }
 }
 console.log(competicaoController.listaCompeticoes);

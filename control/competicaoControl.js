@@ -2,7 +2,7 @@ import { Maratona } from "../model/Maratona.js";
 import { CompeticaoTrilha } from "../model/CompeticaoTrilha.js";
 import { vetAtletas } from "../control/atletasControl.js";
 import { gerarTabelaAtletas } from "../control/atletasControl.js";
-import {Competidor} from "../model/Competidor.js";    
+import { Competidor } from "../model/Competidor.js";
 
 
 export var listaCompeticoes = [];
@@ -109,7 +109,7 @@ export function adicionarAtletaAcompeticao(idCompeticao, cpfAtleta) {
         return false;
     } else if (vetAtletas.findIndex(c => c.refAtleta == atletaEncontrado.cpfAtleta) != -1) {
         competicao.adicionarAtleta(atletaEncontrado);
-        atletaEncontrado.nome = new Competidor(atletaEncontrado, );
+        atletaEncontrado.nome = new Competidor(atletaEncontrado);
         return true;
     }
 
@@ -279,4 +279,70 @@ export function excluirCompetidor(idCompeticao, cpfAtleta) {
     competicao.lstCompetidores.splice(indice, 1);
 
     return true;
+}
+
+export function gerarRelatorioCompeticao(idCompeticao) {
+    if (listaCompeticoes[idCompeticao] == undefined) {
+        return false
+    } else {
+        let vetAtletasFiltrados = listaCompeticoes[idCompeticao].lstCompetidores;
+        let table = document.createElement("table");
+        let thead = document.createElement("thead");
+        let tbody = document.createElement("tbody");
+
+        thead.appendChild(document.createElement("th")).textContent = "Nome";
+        thead.appendChild(document.createElement("th")).textContent = "Idade";
+        thead.appendChild(document.createElement("th")).textContent = "CPF";
+        thead.appendChild(document.createElement("th")).textContent = "Nacionalidade";
+        thead.appendChild(document.createElement("th")).textContent = "Tempo (minutos)";
+        thead.appendChild(document.createElement("th")).textContent = "Posição";
+
+        table.appendChild(thead);
+
+        for (let lin = 0; lin < vetAtletasFiltrados.length; lin++) {
+            let linha = document.createElement("tr");
+
+            // TD comuns
+            let tdNome = document.createElement("td");
+            let tdIdade = document.createElement("td");
+            let tdCPF = document.createElement("td");
+            let tdNacionalidade = document.createElement("td");
+
+            // TD com INPUTS
+            let tdTempo = document.createElement("td");
+            let tdPosicao = document.createElement("td");
+
+            // Inputs
+            let inputTempo = document.createElement("input");
+            inputTempo.type = "number";
+            inputTempo.value = vetAtletasFiltrados[lin].tempo || "";
+            inputTempo.min = 0;
+
+            let inputPosicao = document.createElement("input");
+            inputPosicao.type = "number";
+            inputPosicao.value = vetAtletasFiltrados[lin].posicao || "";
+            inputPosicao.min = 1;
+
+            tdTempo.appendChild(inputTempo);
+            tdPosicao.appendChild(inputPosicao);
+
+            tdNome.textContent = vetAtletasFiltrados[lin].nome;
+            tdIdade.textContent = vetAtletasFiltrados[lin].idade;
+            tdCPF.textContent = vetAtletasFiltrados[lin].cpf;
+            tdNacionalidade.textContent = vetAtletasFiltrados[lin].nacionalidade;
+
+            linha.appendChild(tdNome);
+            linha.appendChild(tdIdade);
+            linha.appendChild(tdCPF);
+            linha.appendChild(tdNacionalidade);
+            linha.appendChild(tdTempo);
+            linha.appendChild(tdPosicao);
+
+            tbody.appendChild(linha);
+        }
+
+        table.appendChild(tbody);
+
+        return table;
+    }
 }
