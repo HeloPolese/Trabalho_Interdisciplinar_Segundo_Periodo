@@ -326,7 +326,6 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.textContent = "Campos vazios!";
             } else {
                 let tabela = competicaoController.relatorioCompeticao(inBuscarId.value);
-
                 if (tabela) {
                     tableCorrida.innerHTML = "";
                     tableCorrida.appendChild(tabela);
