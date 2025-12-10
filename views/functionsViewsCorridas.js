@@ -319,7 +319,7 @@ function executarFuncaoCorrida() {
                 outSaidaCorrida.style.color = "red";
                 outSaidaCorrida.textContent = "Campos vazios!";
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
-                outSaidaCorrida = competicaoController.listarCompetidores(inBuscarId.value);
+                outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
             }
     }
 }

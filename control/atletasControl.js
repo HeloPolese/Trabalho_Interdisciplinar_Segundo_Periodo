@@ -61,12 +61,10 @@ export function gerarTabelaAtletas(vetAtletasFiltrados = vetAtletas) {
         thead.appendChild(document.createElement("th")).textContent = "Idade";
         thead.appendChild(document.createElement("th")).textContent = "CPF";
         thead.appendChild(document.createElement("th")).textContent = "Nacionalidade";
-
         table.appendChild(thead);
 
         for (let lin = 0; lin < vetAtletasFiltrados.length; lin++) {
             let linha = document.createElement("tr");
-
             let tdNome = document.createElement("td");
             let tdIdade = document.createElement("td");
             let tdCPF = document.createElement("td");
