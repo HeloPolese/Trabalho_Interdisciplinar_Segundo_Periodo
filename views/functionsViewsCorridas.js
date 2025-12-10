@@ -319,7 +319,14 @@ function executarFuncaoCorrida() {
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
                 outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
             }
+            break;
+        case "relatorio-todas-competicoes":
+            let tabelaGerada = competicaoController.listarCompeticoes();
+            if (tabelaGerada != undefined) {
+                tableCorrida.innerHTML = "";
+                tableCorrida.appendChild(tabelaGerada);
+            }
+            break;
     }
 }
-
-console.log(competicaoController.listaCompeticoes);
+    console.log(competicaoController.listaCompeticoes);
