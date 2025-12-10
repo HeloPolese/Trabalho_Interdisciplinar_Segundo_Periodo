@@ -30,6 +30,7 @@ const selectOpcaoCorrida = document.getElementById("selectOpcaoCorrida");
 const divSelection = document.getElementById("divSelection");
 const selectModalidade = document.getElementById("selectModalidade");
 const tableCorrida = document.getElementById("tableCorrida");
+const divTableCorrida = document.getElementById("divTableCorrida");
 
 selectModalidade.addEventListener("change", verificarModalidade);
 selectOpcaoCorrida.addEventListener("change", verificarOpcaoCorridas);
@@ -59,6 +60,7 @@ function verificarOpcaoCorridas() {
     divGrauDificuldade.style.display = "none";
     divQtdCheckPoint.style.display = "none";
     divLimiteTempo.style.display = "none";
+    divTableCorrida.style.display = "none";
 
     switch (selectOpcaoCorrida.value) {
         case "cadastrar-competicao":
@@ -91,6 +93,7 @@ function verificarOpcaoCorridas() {
             divLimiteAtletas.style.display = "block";
             divPreco.style.display = "block";
             divLimiteTempo.style.display = "block";
+            divTableCorrida.style.display = "block";
             inNomeCorrida.value = "";
             inBuscarId.value = "";
             inDataCorrida.value = "";
@@ -143,6 +146,7 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            divTableCorrida.style.display = "block";
             break;
         case "relatorio-competicao":
             divBuscarId.style.display = "block";
@@ -156,6 +160,8 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            divTableCorrida.style.display = "block";
+
             break;
         case "relatorio-todas-competicoes":
             inNomeCorrida.value = "";
@@ -168,6 +174,7 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            divTableCorrida.style.display = "block";
             break;
         case "excluir-competidor-competicao":
             divBuscarId.style.display = "block";
@@ -182,6 +189,7 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            divTableCorrida.style.display = "block";
             break;
         case "listar-competidores-competicao":
             divBuscarId.style.display = "block";
@@ -195,6 +203,7 @@ function verificarOpcaoCorridas() {
             inLimiteParti.value = "";
             inPreco.value = "";
             inLimiteTempo.value = "";
+            divTableCorrida.style.display = "block";
             break;
     }
 }
@@ -318,7 +327,7 @@ function executarFuncaoCorrida() {
             } else if (competicaoController.listarCompetidores(inBuscarId.value)) {
                 outSaidaCorrida.textContent = "";
                 tableCorrida.textContent = "";
-                outSaidaCorrida.textContent = competicaoController.listarCompetidores(inBuscarId.value);
+                tableCorrida.appendChild(competicaoController.listarCompetidores(inBuscarId.value));
             }
         case "relatorio-competicao":
             if (inBuscarId.value == "") {

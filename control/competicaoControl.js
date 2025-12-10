@@ -137,37 +137,50 @@ export function listarCompetidores(idCompeticao) {
     if (!competicao) {
         return null;
     } else {
-        var tabela = document.createElement('table');
-        var thead = document.createElement('thead');
-        var tbody = document.createElement('tbody');
+if (!competicao) {
+    return null;
+} else {
+    var tabela = document.createElement('table');
+    var thead = document.createElement('thead');
+    var tbody = document.createElement('tbody');
 
-        thead.appendChild(document.createElement('th')).textContent = "Nome";
-        thead.appendChild(document.createElement('th')).textContent = "CPF";
-        thead.appendChild(document.createElement('th')).textContent = "Idade";
-        thead.appendChild(document.createElement('th')).textContent = "Nacionalidade";
-        tabela.appendChild(thead);
-        let linha = document.createElement("tr");
-        for (let i = 0; i < competicao.lstCompetidores.length; i++) {
-            let tdNome = document.createElement("td");
-            let tdCPF = document.createElement("td");
-            let tdIdade = document.createElement("td");
-            let tdNacionalidade = document.createElement("td");
-            linha.appendChild(tdNome);
-            linha.appendChild(tdCPF);
-            linha.appendChild(tdIdade);
-            linha.appendChild(tdNacionalidade);
-            tbody.appendChild(linha);
+    // CORREÇÃO 1: Criar linha para o cabeçalho
+    var trHead = document.createElement('tr');
+    trHead.appendChild(document.createElement('th')).textContent = "Nome";
+    trHead.appendChild(document.createElement('th')).textContent = "CPF";
+    trHead.appendChild(document.createElement('th')).textContent = "Idade";
+    trHead.appendChild(document.createElement('th')).textContent = "Nacionalidade";
+    thead.appendChild(trHead);
+    tabela.appendChild(thead);
 
-            tdNome.textContent = competicao.lstCompetidores[i].nome;
-            tdCPF.textContent = competicao.lstCompetidores[i].cpf;
-            tdIdade.textContent = competicao.lstCompetidores[i].idade;
-            tdNacionalidade.textContent = competicao.lstCompetidores[i].nacionalidade;
-            tbody.appendChild(linha);
-        }
+    // CORREÇÃO 2 e 3: Criar nova linha para cada competidor
+    for (let i = 0; i < competicao.lstCompetidores.length; i++) {
+        let linha = document.createElement("tr"); // NOVA linha para cada competidor
+        
+        let tdNome = document.createElement("td");
+        let tdCPF = document.createElement("td");
+        let tdIdade = document.createElement("td");
+        let tdNacionalidade = document.createElement("td");
+        
+        // Preencher conteúdo primeiro
+        tdNome.textContent = competicao.lstCompetidores[i].nome;
+        tdCPF.textContent = competicao.lstCompetidores[i].cpf;
+        tdIdade.textContent = competicao.lstCompetidores[i].idade;
+        tdNacionalidade.textContent = competicao.lstCompetidores[i].nacionalidade;
+        
+        // Anexar células à linha
+        linha.appendChild(tdNome);
+        linha.appendChild(tdCPF);
+        linha.appendChild(tdIdade);
+        linha.appendChild(tdNacionalidade);
+        
+        // Anexar linha ao tbody (apenas UMA vez)
+        tbody.appendChild(linha);
+    }
 
-        tabela.appendChild(tbody);
-
-        return tabela;
+    tabela.appendChild(tbody);
+    return tabela;
+}
     }
 
 }
