@@ -2,23 +2,30 @@ import { Competicao } from "../model/Competicao.js";
 
 export class Maratona extends Competicao {
     #altimetria;
+    static #qtdMaratona = 0;
+    #idMaratona;
 
-    constructor(nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, altimetria, idCompeticao){
-        super(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos);
+    constructor(nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, altimetria) {
+        super(nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos);
         this.altimetria = altimetria;
+        Maratona.#qtdMaratona++;
+        this.#idMaratona = "" + new Date().getFullYear() + Maratona.#qtdMaratona;
     }
 
-    get altimetria(){
+    get altimetria() {
         return this.#altimetria;
     }
-
-    set altimetria(novaAltimetria){
+    get idMaratona(){
+        return this.#idMaratona;
+    }
+    set altimetria(novaAltimetria) {
         this.#altimetria = Number(novaAltimetria);
     }
 
     toString() {
-    return super.toString() +
-           `\nAltimetria: ${this.altimetria} m`;
+        return super.toString() +
+            `\nAltimetria: ${this.altimetria} m`;
+              `\nId: ${this.#idMaratona} m`;
     }
 
 }

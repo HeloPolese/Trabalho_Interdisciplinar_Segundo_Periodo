@@ -1,6 +1,4 @@
 export class Competicao {
-
-    #idCompeticao;
     #nome;
     #data;
     #local;
@@ -10,8 +8,8 @@ export class Competicao {
     #limiteTempoMinutos;
     #lstCompetidores;
 
-    constructor(idCompeticao, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos) {
-        this.#idCompeticao = idCompeticao;
+    constructor( nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos) {
+        
         this.#nome = nome;
         this.#data = data;
         this.#local = local;
@@ -20,10 +18,6 @@ export class Competicao {
         this.#preco = preco;
         this.#limiteTempoMinutos = limiteTempoMinutos;
         this.#lstCompetidores = []; // lista é criada dentro do constructor, para que inicialmente uma competição não inicie com atletas já inseridos.
-    }
-
-    get idCompeticao() {
-        return this.#idCompeticao;
     }
 
     get nome() {

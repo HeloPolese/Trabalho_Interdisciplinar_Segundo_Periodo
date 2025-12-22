@@ -5,25 +5,9 @@ import { vetAtletas } from "../control/atletasControl.js";
 
 export var listaCompeticoes = [];
 
-export function gerarID() {
-    if (listaCompeticoes.length == 0) {
-        return 1;
-    } else {
-        let maiorID = listaCompeticoes[0].idCompeticao;
-
-        for (let i = 1; i < listaCompeticoes.length; i++) {
-            if (listaCompeticoes[i].idCompeticao > maiorID) {
-                maiorID = listaCompeticoes[i].idCompeticao;
-            }
-        }
-        return maiorID + 1;
-    }
-}
-
 export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia, limiteParticipante, preco, limiteTempoMinutos, qtdCheckPoint,
     grauDificuldade, altimetria) {
 
-    let novoID = gerarID();
     let novaCompeticao;
 
     if (nomeModalidade == "TRILHA") {
@@ -36,8 +20,7 @@ export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia
             preco,
             limiteTempoMinutos,
             qtdCheckPoint,
-            grauDificuldade,
-            novoID
+            grauDificuldade
         );
     } else if (nomeModalidade == "MARATONA") {
         novaCompeticao = new Maratona(
@@ -49,7 +32,7 @@ export function cadastrarCompeticao(nomeModalidade, nome, data, local, distancia
             preco,
             limiteTempoMinutos,
             altimetria,
-            novoID
+        
         );
     }
     listaCompeticoes.push(novaCompeticao);
@@ -213,7 +196,7 @@ export function relatorioCompeticao(idCompeticao) {
             var tbody = document.createElement('tbody');
 
             var cabecalhoLinha = document.createElement('tr');
-            var cabecalho = ['Nome', 'Data', 'Local', 'Distância (km)', 'Limite de Participantes', 'Preço (R$)', 'Tipo'];
+            var cabecalho = ['ID','Nome', 'Data', 'Local', 'Distância (km)', 'Limite de Participantes', 'Preço (R$)', 'Tipo'];
 
             cabecalho.forEach(cabecalhoTexto => {
                 var header = document.createElement('th');
@@ -228,6 +211,7 @@ export function relatorioCompeticao(idCompeticao) {
                 var linha = document.createElement('tr');
 
                 var celulas = [
+                    competicao.idCompeticao,
                     competicao.nome,
                     competicao.data,
                     competicao.local,
