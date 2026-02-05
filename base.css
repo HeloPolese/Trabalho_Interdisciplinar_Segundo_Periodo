@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     width: 100%;
     overflow-x: hidden;
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     font-family: "Roboto", sans-serif;
     font-size: 20px;
     display: flex;
     flex-direction: column;
 }
 
+/* HEADER */
 .cabecalho {
     background-color: black;
     display: flex;
@@ -42,14 +42,13 @@ body {
     text-decoration: none;
     color: white;
     margin-left: 40px;
-
 }
 
 .link:hover {
     text-decoration: underline;
 }
 
-/* MAIN ----------------------------------------------------------------------------------------------------------------------- */
+/* MAIN */
 main {
     background-color: white;
     display: flex;
@@ -62,6 +61,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .banner {
@@ -70,10 +70,16 @@ main {
     margin-bottom: 30px;
 }
 
-.select {
+.container-banner {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* SELECT */
+.select {
+    display: flex;
+    justify-content: center;
     margin-top: 50px;
 }
 
@@ -85,21 +91,19 @@ main {
     width: 300px;
 }
 
-.selectOpcaoCorrida:hover {
+select:hover {
     cursor: pointer;
 }
 
-.selectOpcao:hover {
-    cursor: pointer;
+/* INPUTS */
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
-input {
-    padding: 10px;
-    font-size: 10px;
-}
-
-input,
-select {
+input, select {
     width: 100%;
     padding: 12px;
     margin-top: 8px;
@@ -117,14 +121,9 @@ select:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
-
-#btOkCorrida{
+/* BOTÕES */
+#btOk,
+#btOkCorrida {
     margin-top: 30px;
     background-color: black;
     color: white;
@@ -134,57 +133,31 @@ select:focus {
     margin-bottom: 40px;
 }
 
+#btOk:hover,
 #btOkCorrida:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-#btOk {
-    margin-top: 30px;
-    background-color: black;
-    color: white;
-    width: 165px;
-    border-radius: 5px;
-    padding: 6px;
-    margin-bottom: 40px;
-}
-
-#btOk:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-}
-
-#outSaidaCorrida{
-    margin-bottom: 50px;
-}
-
-#outSaida {
-    margin-bottom: 10px;
-}
-
+/* TÍTULOS */
 .title {
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: 30px;
 }
 
-.container-banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* ====== TABELA ====== */
 
-/* Container onde a tabela aparece */
-#table,#tableCorrida {
+#tableCorrida,#tableAtleta {
     display: flex;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 
-/* Estilo da tabela gerada no JS */
-#table table,#tableCorrida  {
+/* tabela criada pelo JS */
+#tableCorrida table,
+#tableAtleta table {
     border-collapse: collapse;
     min-width: 400px;
     background-color: white;
@@ -194,46 +167,44 @@ select:focus {
     font-family: Arial, sans-serif;
 }
 
-/* Cabeçalho */
-#table thead,#tableCorrida  {
-    background-color: black;
-    color: white;
+/* cabeçalho */
+#tableCorrida thead,
+#tableAtleta thead {
+    background-color: rgb(0, 0, 0);
 }
 
-/* Títulos */
-#table th,#tableCorrida  {
+/* títulos */
+#tableCorrida th,
+#tableAtleta th {
+    color: white;
     padding: 14px 20px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
 }
 
-/* Células */
-#table td,#tableCorrida  {
+/* células */
+#tableCorrida td,
+#tableAtleta td {
     padding: 12px 20px;
     text-align: center;
     font-size: 15px;
     border-bottom: 1px solid #ddd;
 }
 
-/* FOOTER ----------------------------------------------------------------------------------------------------------------------- */
-
+/* FOOTER */
 footer {
     background-color: black;
-    display: flex;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-
 }
 
 .container-footer {
     display: flex;
-    flex-direction: row;
     align-items: center;
-
 }
 
 .brasil {

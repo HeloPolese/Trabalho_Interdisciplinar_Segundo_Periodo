@@ -11,7 +11,7 @@ const divIdade = document.getElementById("divIdade");
 const divCpf = document.getElementById("divCpf");
 const outSaida = document.getElementById("outSaida");
 const btOk = document.getElementById("btOk");
-const table = document.getElementById("table");
+const table = document.getElementById("tableAtleta");
 const divNacionalidade = document.getElementById("divNacionalidade");
 const inNacionalidade = document.getElementById("inNacionalidade");
 
@@ -98,7 +98,7 @@ function executarFuncaoAtleta() {
                 inIdade.focus();
             } else {
                 if (Atleta.cadastrarAtleta(inNome.value, inIdade.value, inCpf.value, inNacionalidade.value)) {
-                    outSaida.style.color = "blue";
+                    outSaida.style.color = "green";
                     outSaida.textContent = "Cadastrado com sucesso!";
                 }
                 else {

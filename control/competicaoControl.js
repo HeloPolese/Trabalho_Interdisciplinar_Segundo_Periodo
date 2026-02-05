@@ -135,7 +135,6 @@ export function listarCompeticoes(listaCompeticoesFiltradas = listaCompeticoes) 
         const th = document.createElement("th");
         th.textContent = col;
         th.style.padding = "8px";
-        th.style.background = "#eee";
         trHead.appendChild(th);
     });
 
