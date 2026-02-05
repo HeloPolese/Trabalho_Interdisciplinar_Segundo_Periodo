@@ -102,7 +102,19 @@ select:hover {
     align-items: center;
     margin-top: 30px;
 }
+.inputsCorrida {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 por linha */
+    gap: 20px 40px; /* espaço entre linhas e colunas */
+    max-width: 800px;
+    margin: 40px auto; /* centraliza no meio da tela */
+}
 
+/* cada bloco de label + input */
+.inputsCorrida > div {
+    display: flex;
+    flex-direction: column;
+}
 input, select {
     width: 100%;
     padding: 12px;
@@ -119,6 +131,13 @@ input:focus,
 select:focus {
     border-color: black;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.divSaida{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* BOTÕES */

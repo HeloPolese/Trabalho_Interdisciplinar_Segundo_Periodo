@@ -55,7 +55,7 @@
                 <option value="excluir-competidor-competicao">Excluir Competidor da Competição</option>
             </select>
         </div>
-        <div class="inputs">
+        <div class="inputsCorrida">
             <div id="divBuscarId">
                 <label for="inBuscarId">Buscar por ID: </label><input type="text" id="inBuscarId"
                     placeholder="Insira o ID da Competição...">
@@ -112,13 +112,14 @@
                 <label for="inGrauDificuldade">Grau de Dificuldade</label><input type="text" id="inGrauDificuldade"
                     placeholder="Insira o grau de dificuldade (ex: Facil, medio, dificil)">
             </div>
-            <p> <input type="button" id="btOkCorrida" value="Executar"> </p>
-            <p id="outSaidaCorrida"></p>
-        
-                <section id="tableCorrida"></section>
-            
-
+       
         </div>
+        <div class="divSaida">
+               <p> <input type="button" id="btOkCorrida" value="Executar"> </p>
+            <p id="outSaidaCorrida"></p>
+           <section id="tableCorrida"></section>
+        </div>
+          
     </main>
 
     <script type="module" src="./views/functionsViewsCorridas.js"></script>
