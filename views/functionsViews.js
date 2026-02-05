@@ -123,7 +123,7 @@ function executarFuncaoAtleta() {
                     outSaida.textContent = "Editado com sucesso!";
                 } else {
                     outSaida.style.color = "red";
-                    outSaida.textContent = "Erro! Atleta não encontrado.";
+                    outSaida.textContent = "Erro!";
                 }
             }
             break;
